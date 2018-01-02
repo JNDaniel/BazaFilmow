@@ -14,7 +14,7 @@ public class Aktor {
     private String imie;
     private String nazwisko;
     private String narodowosc;
-    private String data_urodzenia;
+    private String dataUrodzenia;
 
     public Aktor() {
     }
@@ -52,17 +52,17 @@ public class Aktor {
         this.narodowosc = narodowosc;
     }
 
-    public String getData_urodzenia() {
-        return data_urodzenia;
+    public String getDataUrodzenia() {
+        return dataUrodzenia;
     }
 
-    public void setData_urodzenia(String data_urodzenia) {
-        this.data_urodzenia = data_urodzenia;
+    public void setDataUrodzenia(String dataUrodzenia) {
+        this.dataUrodzenia = dataUrodzenia;
     }
 
     @Override
     public String toString() {
-        return "Aktor{" + "id=" + id + ", imie=" + imie + ", nazwisko=" + nazwisko + ", narodowosc=" + narodowosc + ", data_urodzenia=" + data_urodzenia + '}';
+        return "Aktor{" + "id=" + id + ", imie=" + imie + ", nazwisko=" + nazwisko + ", narodowosc=" + narodowosc + ", data_urodzenia=" + dataUrodzenia + '}';
     }
     
     

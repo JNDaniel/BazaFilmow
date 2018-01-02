@@ -5,6 +5,8 @@
  */
 package bazafilmow;
 
+import bazafilmow.model.Aktor;
+
 /**
  *
  * @author Daniel
