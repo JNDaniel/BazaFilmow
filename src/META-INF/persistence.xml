@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="BazaFilmowPU" transaction-type="RESOURCE_LOCAL">
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence">
+  <persistence-unit name="testjpa" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>bazafilmow.model.Aktor</class>
+    <class>bazafilmow.model.Film</class>
+    <class>bazafilmow.model.Gatunek</class>
+    <class>bazafilmow.model.Kraj</class>
+    <class>bazafilmow.model.Rezyser</class>
+    <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
     <properties>
-      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/testdb"/>
-      <property name="javax.persistence.jdbc.user" value="postgres"/>
-      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="daniel"/>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/testdb"/>
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      <property name="hibernate.connection.username" value="postgres"/>
+      <property name="hibernate.connection.password" value="daniel"/>
     </properties>
   </persistence-unit>
 </persistence>

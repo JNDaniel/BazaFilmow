@@ -5,17 +5,31 @@
  */
 package bazafilmow;
 
+import bazafilmow.model.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.ParameterMode;
+import javax.persistence.Persistence;
+import javax.persistence.StoredProcedureQuery;
+
 /**
  *
  * @author Daniel
  */
 public class Main {
-
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+                EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("testjpa");
+		EntityManager em = entityManagerFactory.createEntityManager();
+
+		em.getTransaction().begin();
+		//System.out.println("SIEMA");
+		//em.persist();
+		//em.getTransaction().commit();
+		em.close();
     }
     
 }
