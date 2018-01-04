@@ -6,15 +6,19 @@
 package bazafilmow.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -22,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Daniel
  */
 @Entity
-@Table(name = "Kraj")
+@Table(name = "Kraj", uniqueConstraints = {@UniqueConstraint(columnNames = {"nazwa"}) })
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Kraj.findAll", query = "SELECT k FROM Kraj k")
@@ -39,6 +43,9 @@ public class Kraj implements Serializable {
     @Basic(optional = false)
     @Column(name = "nazwa")
     private String nazwa;
+        
+    @ManyToMany(mappedBy = "kraje")
+    private Set<Film> filmy = new HashSet<>();
 
     public Kraj() {
     }
@@ -88,6 +95,18 @@ public class Kraj implements Serializable {
         return true;
     }
 
+    public Set<Film> getFilmy() {
+        return filmy;
+    }
+
+    public void setFilmy(Set<Film> filmy) {
+        this.filmy = filmy;
+    }
+    public void addFilm(Film f)
+    {
+        this.filmy.add(f);
+    }
+    
     @Override
     public String toString() {
         return "Kraj{" + "krajId=" + krajId + ", nazwa=" + nazwa + '}';

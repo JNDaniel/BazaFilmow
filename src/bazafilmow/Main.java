@@ -8,9 +8,9 @@ package bazafilmow;
 import bazafilmow.model.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
-import javax.persistence.StoredProcedureQuery;
+import org.hibernate.exception.ConstraintViolationException;
+import org.postgresql.util.PSQLException;
 
 /**
  *
@@ -26,10 +26,31 @@ public class Main {
 		EntityManager em = entityManagerFactory.createEntityManager();
 
 		em.getTransaction().begin();
-		//System.out.println("SIEMA");
-		//em.persist();
-		//em.getTransaction().commit();
-		em.close();
+                
+                Film f = new Film();
+                Film f2 = new Film();
+                
+                f.setTytul("Szybcy");
+                f2.setTytul("Szybsi");
+
+                Kraj x = new Kraj();
+                x.setNazwa("Polska");
+                
+                Kraj y = new Kraj();
+                y.setNazwa("NiePolska");
+                
+                f.addKraj(x); //dodanie krajow do filmow
+                f2.addKraj(y);
+                
+                
+                
+                em.persist(f);
+                em.persist(f2);
+                
+                em.getTransaction().commit();
+
+
+		em.close();  
     }
     
 }

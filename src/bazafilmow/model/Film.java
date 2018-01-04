@@ -5,13 +5,20 @@
  */
 package bazafilmow.model;
 
+import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -49,6 +56,15 @@ public class Film implements Serializable {
     @Basic(optional = false)
     @Column(name = "film_id")
     private Integer filmId;
+    @ManyToMany(cascade = { 
+        CascadeType.PERSIST, 
+        CascadeType.MERGE
+    })
+    @JoinTable(name = "film_kraj",
+        joinColumns = @JoinColumn(name = "film_id"),
+        inverseJoinColumns = @JoinColumn(name = "kraj_id")
+    )
+    private Set<Kraj> kraje = new HashSet<>();
 
     public Film() {
     }
@@ -122,6 +138,19 @@ public class Film implements Serializable {
         return true;
     }
 
+    public Set<Kraj> getKraje() {
+        return kraje;
+    }
+
+    public void setKraje(Set<Kraj> kraje) {
+        this.kraje = kraje;
+    }
+    
+    public void addKraj(Kraj k)
+    {
+        this.kraje.add(k);
+    }
+    
     @Override
     public String toString() {
         return "Film{" + "tytul=" + tytul + ", rokProd=" + rokProd + ", boxOffice=" + boxOffice + ", jezyk=" + jezyk + ", filmId=" + filmId + '}';
