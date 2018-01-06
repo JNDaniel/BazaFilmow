@@ -5,6 +5,10 @@
  */
 package bazafilmow;
 
+import bazafilmow.model.Kraj;
+import java.util.Locale;
+import java.util.Set;
+import java.util.TreeSet;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -23,6 +27,19 @@ public class Utils {
     }
     public static void loadKraje()
     {
-        //TODO: statyczne wczytywanie krajow przykladowych
+	String[] locales = Locale.getISOCountries();
+        TreeSet<Kraj> kraje = new TreeSet<>();
+	for (String countryCode : locales) 
+        {
+		Locale obj = new Locale("", countryCode);
+                Kraj k = new Kraj();
+                k.setNazwa(obj.getDisplayCountry());
+                kraje.add(k);
+	}
+        for(Kraj k : kraje)
+        {
+            em.persist(k);
+        }
+        //TODO: Kraje do tabeli w kolejnosci alfabetycznej
     }
 }
