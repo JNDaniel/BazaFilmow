@@ -6,12 +6,15 @@
 package bazafilmow.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -50,7 +53,9 @@ public class Rezyser implements Serializable {
     private String narodowosc;
     @Column(name = "data_urodzenia")
     private String dataUrodzenia;
-
+    
+    @ManyToMany(mappedBy = "rezyserzy")
+    private Set<Film> filmy = new HashSet<>();
     public Rezyser() {
     }
 
@@ -105,6 +110,25 @@ public class Rezyser implements Serializable {
         this.dataUrodzenia = dataUrodzenia;
     }
 
+    public Set<Film> getFilmy() {
+        return filmy;
+    }
+
+    public void setFilmy(Set<Film> filmy) {
+        this.filmy = filmy;
+    }
+    
+    public void addFilm(Film f)
+    {
+        this.filmy.add(f);
+        Set<Rezyser> rezyserzy = f.getRezyserzy();
+        rezyserzy.add(this);
+        f.setRezyserzy(rezyserzy);
+    }
+    public void deleteFilm(Film f)
+    {
+        //TODO: Metoda - do zaimplementowania
+    }
     @Override
     public int hashCode() {
         int hash = 0;

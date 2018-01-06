@@ -65,6 +65,15 @@ public class Film implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "kraj_id")
     )
     private Set<Kraj> kraje = new HashSet<>();
+    @ManyToMany(cascade = { 
+        CascadeType.PERSIST, 
+        CascadeType.MERGE
+    })
+    @JoinTable(name = "film_rezyser",
+        joinColumns = @JoinColumn(name = "film_id"),
+        inverseJoinColumns = @JoinColumn(name = "rezyser_id")
+    )
+    Set<Rezyser> rezyserzy = new HashSet<>();
 
     public Film() {
     }
@@ -149,6 +158,26 @@ public class Film implements Serializable {
     public void addKraj(Kraj k)
     {
         this.kraje.add(k);
+    }
+    public void deleteKraj(Kraj k)
+    {
+        this.kraje.remove(k);
+    }
+
+    public Set<Rezyser> getRezyserzy() {
+        return rezyserzy;
+    }
+
+    public void setRezyserzy(Set<Rezyser> rezyserzy) {
+        this.rezyserzy = rezyserzy;
+    }
+    public void addRezyser(Rezyser r)
+    {
+        this.rezyserzy.add(r);
+    }
+    public void deleteRezyser(Rezyser r)
+    {
+        this.rezyserzy.remove(r);
     }
     
     @Override
