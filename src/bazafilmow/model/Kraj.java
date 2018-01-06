@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Kraj.findAll", query = "SELECT k FROM Kraj k")
     , @NamedQuery(name = "Kraj.findByKrajId", query = "SELECT k FROM Kraj k WHERE k.krajId = :krajId")
     , @NamedQuery(name = "Kraj.findByNazwa", query = "SELECT k FROM Kraj k WHERE k.nazwa = :nazwa")})
-public class Kraj implements Serializable {
+public class Kraj implements Serializable,Comparable<Kraj> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -113,6 +113,11 @@ public class Kraj implements Serializable {
     @Override
     public String toString() {
         return "Kraj{" + "krajId=" + krajId + ", nazwa=" + nazwa + '}';
+    }
+
+    @Override
+    public int compareTo(Kraj o) {
+        return this.getNazwa().compareToIgnoreCase(o.getNazwa());
     }
 
     
