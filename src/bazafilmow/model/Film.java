@@ -74,7 +74,17 @@ public class Film implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "rezyser_id")
     )
     Set<Rezyser> rezyserzy = new HashSet<>();
-
+    
+    @ManyToMany(cascade = { 
+        CascadeType.PERSIST, 
+        CascadeType.MERGE
+    })
+    @JoinTable(name = "film_aktor",
+        joinColumns = @JoinColumn(name = "film_id"),
+        inverseJoinColumns = @JoinColumn(name = "aktor_id")
+    )
+    Set<Aktor> aktorzy = new HashSet<>();
+    
     public Film() {
     }
 
@@ -179,6 +189,24 @@ public class Film implements Serializable {
     {
         this.rezyserzy.remove(r);
     }
+
+    public Set<Aktor> getAktorzy() {
+        return aktorzy;
+    }
+
+    public void setAktorzy(Set<Aktor> aktorzy) {
+        this.aktorzy = aktorzy;
+    }
+    
+    public void addAktor(Aktor a)
+    {
+        this.aktorzy.add(a);
+    }
+    public void deleteAktor(Aktor a)
+    {
+        this.aktorzy.remove(a);
+    }
+    
     
     @Override
     public String toString() {
