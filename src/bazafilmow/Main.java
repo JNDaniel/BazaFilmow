@@ -21,17 +21,18 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-                EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("testjpa");
-		EntityManager em = entityManagerFactory.createEntityManager();
+                EntityManager em = Utils.getEntityManager();
 
 		em.getTransaction().begin();
                 
                 Film f = new Film();
                 Film f2 = new Film();
+                Film f3 = new Film();
                 
                 f.setTytul("Szybcy");
                 f2.setTytul("Szybsi");
-
+                f3.setTytul("Najszybsi");
+                
                 Kraj x = new Kraj();
                 x.setNazwa("Polska");
                 
@@ -41,21 +42,53 @@ public class Main {
                 f.addKraj(x); //dodanie krajow do filmow
                 f2.addKraj(x);
                 
+                Aktor aktor1 = new Aktor();
+                aktor1.setImie("AktorImie1");
+                aktor1.setNazwisko("AktorNazwisko1");
+                
+                Aktor aktor2 = new Aktor();
+                aktor2.setImie("AktorImie2");
+                aktor2.setNazwisko("AktorNazwisko2");
+                
+                Gatunek gatunek1 = new Gatunek();
+                gatunek1.setNazwa("Paranormalny");
+                
+                Gatunek gatunek2 = new Gatunek();
+                gatunek2.setNazwa("Przyrodniczy");
+                
+                
+                
+                //f2.deleteKraj(x); //usuwanie tylko relacji a nie usuwa kraju z bazy
+                //f.deleteKraj(x);
+                //em.remove(x);
+                //em.remove(y);
+                
+                Rezyser rez1 = new Rezyser();
+                rez1.setImie("Daniel");
+                rez1.setNazwisko("Janowski");
+                rez1.setNarodowosc("Polska");
+                
                 
                 
                 em.persist(f);
                 em.persist(f2);
                 
+                f.addRezyser(rez1);
+                
+                f.addAktor(aktor1);
+                //f.deleteAktor(aktor1);
                
 
-                f2.getKraje().remove(x); //potrzebne przy usuwaniu kraju z , usuwanie tylko relacji a nie usuwa kraju z bazy
-                //f2.getKraje().add(x); // przeciwstawne do powyzszego
-                em.getTransaction().commit();
+               //f.addGatunek(gatunek2);
+               f2.addGatunek(gatunek1);
+               f.addGatunek(gatunek2);
+               
+               
                 
-                x.getFilmy().add(f2);
-                em.refresh(f2);
-                em.refresh(x);
-
+                
+                //f.deleteRezyser(rez1); //usuniecie po persist niszczy relacje ale zostawia rekord rezyser w bazie
+                //Utils.loadKraje();
+                em.getTransaction().commit();
 
 		em.close();  
     }
