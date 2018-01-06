@@ -105,6 +105,10 @@ public class Kraj implements Serializable {
     public void addFilm(Film f)
     {
         this.filmy.add(f);
+        Set<Kraj> kraje = new HashSet<>(f.getKraje());
+        kraje.add(this);
+        f.setKraje(kraje);
+        
     }
     
     @Override
