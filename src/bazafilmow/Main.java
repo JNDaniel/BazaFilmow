@@ -9,7 +9,6 @@ import bazafilmow.model.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.hibernate.exception.ConstraintViolationException;
 import org.postgresql.util.PSQLException;
 
 /**
@@ -40,14 +39,22 @@ public class Main {
                 y.setNazwa("NiePolska");
                 
                 f.addKraj(x); //dodanie krajow do filmow
-                f2.addKraj(y);
+                f2.addKraj(x);
                 
                 
                 
                 em.persist(f);
                 em.persist(f2);
                 
+               
+
+                f2.getKraje().remove(x); //potrzebne przy usuwaniu kraju z , usuwanie tylko relacji a nie usuwa kraju z bazy
+                //f2.getKraje().add(x); // przeciwstawne do powyzszego
                 em.getTransaction().commit();
+                
+                x.getFilmy().add(f2);
+                em.refresh(f2);
+                em.refresh(x);
 
 
 		em.close();  
