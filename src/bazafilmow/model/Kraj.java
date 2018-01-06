@@ -108,7 +108,6 @@ public class Kraj implements Serializable {
         Set<Kraj> kraje = new HashSet<>(f.getKraje());
         kraje.add(this);
         f.setKraje(kraje);
-        
     }
     
     @Override
