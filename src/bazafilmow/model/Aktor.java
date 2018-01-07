@@ -5,27 +5,79 @@
  */
 package bazafilmow.model;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Daniel
  */
-public class Aktor {
-    private Long id;
-    private String imie;
-    private String nazwisko;
-    private String narodowosc;
-    private String dataUrodzenia;
+@Entity
+@Table(name = "Aktor")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Aktor.findAll", query = "SELECT a FROM Aktor a")
+    , @NamedQuery(name = "Aktor.findByAktorId", query = "SELECT a FROM Aktor a WHERE a.aktorId = :aktorId")
+    , @NamedQuery(name = "Aktor.findByImie", query = "SELECT a FROM Aktor a WHERE a.imie = :imie")
+    , @NamedQuery(name = "Aktor.findByNazwisko", query = "SELECT a FROM Aktor a WHERE a.nazwisko = :nazwisko")
+    , @NamedQuery(name = "Aktor.findByNarodowosc", query = "SELECT a FROM Aktor a WHERE a.narodowosc = :narodowosc")
+    , @NamedQuery(name = "Aktor.findByDataUrodzenia", query = "SELECT a FROM Aktor a WHERE a.dataUrodzenia = :dataUrodzenia")})
+public class Aktor implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "aktor_id")
+    private Integer aktorId;
+    @Basic(optional = false)
+    @Column(name = "imie")
+    private String imie;
+    @Basic(optional = false)
+    @Column(name = "nazwisko")
+    private String nazwisko;
+    @Basic(optional = false)
+    @Column(name = "narodowosc")
+    private String narodowosc;
+    @Column(name = "data_urodzenia")
+    private String dataUrodzenia;
+    
+    @ManyToMany(mappedBy = "aktorzy")
+    Set<Film> filmy = new HashSet<>();
+    
     public Aktor() {
     }
-    
 
-    public Long getId() {
-        return id;
+    public Aktor(Integer aktorId) {
+        this.aktorId = aktorId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Aktor(Integer aktorId, String imie, String nazwisko, String narodowosc) {
+        this.aktorId = aktorId;
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.narodowosc = narodowosc;
+    }
+
+    public Integer getAktorId() {
+        return aktorId;
+    }
+
+    public void setAktorId(Integer aktorId) {
+        this.aktorId = aktorId;
     }
 
     public String getImie() {
@@ -60,13 +112,71 @@ public class Aktor {
         this.dataUrodzenia = dataUrodzenia;
     }
 
+    public Set<Film> getFilmy() {
+        return filmy;
+    }
+
+    public void setFilmy(Set<Film> filmy) {
+        this.filmy = filmy;
+    }
+    public void addFilm(Film f)
+    {
+        this.filmy.add(f);
+        f.addAktor(this);
+    }
+    public void deleteFilm(Film f)
+    {
+        this.filmy.remove(f);
+        f.deleteAktor(this);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.imie);
+        hash = 41 * hash + Objects.hashCode(this.nazwisko);
+        hash = 41 * hash + Objects.hashCode(this.narodowosc);
+        hash = 41 * hash + Objects.hashCode(this.dataUrodzenia);
+        return hash;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Aktor other = (Aktor) obj;
+        if (!Objects.equals(this.imie, other.imie)) {
+            return false;
+        }
+        if (!Objects.equals(this.nazwisko, other.nazwisko)) {
+            return false;
+        }
+        if (!Objects.equals(this.narodowosc, other.narodowosc)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataUrodzenia, other.dataUrodzenia)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
+
     @Override
     public String toString() {
-        return "Aktor{" + "id=" + id + ", imie=" + imie + ", nazwisko=" + nazwisko + ", narodowosc=" + narodowosc + ", data_urodzenia=" + dataUrodzenia + '}';
+        return "Aktor{" + "aktorId=" + aktorId + ", imie=" + imie + ", nazwisko=" + nazwisko + ", narodowosc=" + narodowosc + ", dataUrodzenia=" + dataUrodzenia + '}';
     }
-    
-    
-    
+
+
     
     
 }
