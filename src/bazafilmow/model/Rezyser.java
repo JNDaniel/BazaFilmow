@@ -7,6 +7,7 @@ package bazafilmow.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -127,27 +128,47 @@ public class Rezyser implements Serializable {
     }
     public void deleteFilm(Film f)
     {
-        //TODO: Metoda - do zaimplementowania
+        this.filmy.remove(f);
+        f.deleteRezyser(this);
     }
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (rezyserId != null ? rezyserId.hashCode() : 0);
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.imie);
+        hash = 41 * hash + Objects.hashCode(this.nazwisko);
+        hash = 41 * hash + Objects.hashCode(this.narodowosc);
+        hash = 41 * hash + Objects.hashCode(this.dataUrodzenia);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rezyser)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Rezyser other = (Rezyser) object;
-        if ((this.rezyserId == null && other.rezyserId != null) || (this.rezyserId != null && !this.rezyserId.equals(other.rezyserId))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Rezyser other = (Rezyser) obj;
+        if (!Objects.equals(this.imie, other.imie)) {
+            return false;
+        }
+        if (!Objects.equals(this.nazwisko, other.nazwisko)) {
+            return false;
+        }
+        if (!Objects.equals(this.narodowosc, other.narodowosc)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataUrodzenia, other.dataUrodzenia)) {
             return false;
         }
         return true;
     }
+
 
     @Override
     public String toString() {
