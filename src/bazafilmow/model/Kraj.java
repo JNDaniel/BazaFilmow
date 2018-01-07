@@ -117,6 +117,11 @@ public class Kraj implements Serializable,Comparable<Kraj> {
         kraje.add(this);
         f.setKraje(kraje);
     }
+    public void deleteFilm(Film f)
+    {
+        this.filmy.remove(f);
+        f.deleteKraj(this);
+    }
     
     @Override
     public String toString() {
