@@ -7,6 +7,7 @@ package bazafilmow.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -125,27 +126,50 @@ public class Aktor implements Serializable {
     }
     public void deleteFilm(Film f)
     {
-        //TODO: Metoda do implementacji
-    }
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (aktorId != null ? aktorId.hashCode() : 0);
-        return hash;
+        this.filmy.remove(f);
+        f.deleteAktor(this);
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Aktor)) {
+    public int hashCode() {
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.imie);
+        hash = 41 * hash + Objects.hashCode(this.nazwisko);
+        hash = 41 * hash + Objects.hashCode(this.narodowosc);
+        hash = 41 * hash + Objects.hashCode(this.dataUrodzenia);
+        return hash;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Aktor other = (Aktor) object;
-        if ((this.aktorId == null && other.aktorId != null) || (this.aktorId != null && !this.aktorId.equals(other.aktorId))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Aktor other = (Aktor) obj;
+        if (!Objects.equals(this.imie, other.imie)) {
+            return false;
+        }
+        if (!Objects.equals(this.nazwisko, other.nazwisko)) {
+            return false;
+        }
+        if (!Objects.equals(this.narodowosc, other.narodowosc)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataUrodzenia, other.dataUrodzenia)) {
             return false;
         }
         return true;
     }
+
+    
+    
 
     @Override
     public String toString() {
