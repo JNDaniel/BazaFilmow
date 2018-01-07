@@ -8,6 +8,7 @@ package bazafilmow.model;
 import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -149,23 +150,48 @@ public class Film implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (filmId != null ? filmId.hashCode() : 0);
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.tytul);
+        hash = 71 * hash + Objects.hashCode(this.rokProd);
+        hash = 71 * hash + Objects.hashCode(this.boxOffice);
+        hash = 71 * hash + Objects.hashCode(this.jezyk);
+        hash = 71 * hash + Objects.hashCode(this.filmId);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Film)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Film other = (Film) object;
-        if ((this.filmId == null && other.filmId != null) || (this.filmId != null && !this.filmId.equals(other.filmId))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Film other = (Film) obj;
+        if (!Objects.equals(this.tytul, other.tytul)) {
+            return false;
+        }
+        if (!Objects.equals(this.jezyk, other.jezyk)) {
+            return false;
+        }
+        if (!Objects.equals(this.rokProd, other.rokProd)) {
+            return false;
+        }
+        if (!Objects.equals(this.boxOffice, other.boxOffice)) {
+            return false;
+        }
+        if (!Objects.equals(this.filmId, other.filmId)) {
             return false;
         }
         return true;
     }
+
+
+
+
 
     public Set<Kraj> getKraje() {
         return kraje;
