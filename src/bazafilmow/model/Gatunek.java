@@ -101,8 +101,12 @@ public class Gatunek implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.nazwa);
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.nazwa);
+        return hash;
     }
+
+  
 
     @Override
     public boolean equals(Object object) {
