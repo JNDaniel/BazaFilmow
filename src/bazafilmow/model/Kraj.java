@@ -7,6 +7,7 @@ package bazafilmow.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -77,23 +78,30 @@ public class Kraj implements Serializable,Comparable<Kraj> {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (krajId != null ? krajId.hashCode() : 0);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.nazwa);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Kraj)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Kraj other = (Kraj) object;
-        if ((this.krajId == null && other.krajId != null) || (this.krajId != null && !this.krajId.equals(other.krajId))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Kraj other = (Kraj) obj;
+        if (!Objects.equals(this.nazwa, other.nazwa)) {
             return false;
         }
         return true;
     }
+
+
 
     public Set<Film> getFilmy() {
         return filmy;
