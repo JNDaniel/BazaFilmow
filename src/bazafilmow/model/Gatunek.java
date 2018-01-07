@@ -7,6 +7,7 @@ package bazafilmow.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -100,9 +101,7 @@ public class Gatunek implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (gatunekId != null ? gatunekId.hashCode() : 0);
-        return hash;
+        return Objects.hash(this.nazwa);
     }
 
     @Override
