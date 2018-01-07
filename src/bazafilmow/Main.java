@@ -68,14 +68,23 @@ public class Main {
                 rez1.setNazwisko("Janowski");
                 rez1.setNarodowosc("Polska");
                 
+                Rezyser rez2 = new Rezyser();
+                rez2.setImie("Dan");
+                rez2.setNazwisko("Jan");
+                rez2.setNarodowosc("Pol");
+                
                 
                 
                 em.persist(f);
                 em.persist(f2);
                 
                 f.addRezyser(rez1);
+                f.addRezyser(rez2);
+                f2.addRezyser(rez2);
                 
                 f.addAktor(aktor1);
+                f.addAktor(aktor2);
+                f2.addAktor(aktor2);
                 //f.deleteAktor(aktor1);
                
                em.persist(f);
