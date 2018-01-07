@@ -78,12 +78,15 @@ public class Main {
                 f.addAktor(aktor1);
                 //f.deleteAktor(aktor1);
                
-
-               //f.addGatunek(gatunek2);
+               em.persist(f);
+               em.persist(f2);
+     
                f2.addGatunek(gatunek1);
                f.addGatunek(gatunek2);
+               f.addGatunek(gatunek1);
+               f2.addGatunek(gatunek2);
                
-               
+               f2.deleteGatunek(gatunek1);
                 
                 
                 //f.deleteRezyser(rez1); //usuniecie po persist niszczy relacje ale zostawia rekord rezyser w bazie
