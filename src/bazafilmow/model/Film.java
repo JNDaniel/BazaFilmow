@@ -5,6 +5,7 @@
  */
 package bazafilmow.model;
 
+import bazafilmow.Utils;
 import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -95,7 +97,7 @@ public class Film implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "gatunek_id")
     )
     Set<Gatunek> gatunki = new HashSet<>();
-    
+
     public Film() {
     }
 
@@ -146,6 +148,20 @@ public class Film implements Serializable {
 
     public void setFilmId(Integer filmId) {
         this.filmId = filmId;
+    }
+    public void clear()
+    { //TODO:  napsiz prawodlowa implementacje
+//        for(Gatunek g : this.getGatunki())
+//        {
+//            g.getFilmy().remove(this);
+//        }
+//        this.gatunki.clear();
+//        
+//        this.kraje.clear();
+//        
+//        this.rezyserzy.clear();
+        
+        this.aktorzy.clear();
     }
 
     @Override
@@ -237,9 +253,11 @@ public class Film implements Serializable {
     public void addAktor(Aktor a)
     {
         this.aktorzy.add(a);
+        a.getFilmy().add(this);
     }
     public void deleteAktor(Aktor a)
     {
+        a.getFilmy().remove(this);
         this.aktorzy.remove(a);
     }
 
