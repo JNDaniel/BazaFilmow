@@ -6,6 +6,10 @@
 package bazafilmow;
 
 import bazafilmow.model.*;
+import bazafilmow.Utilities;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 /**
@@ -43,6 +47,26 @@ public class Main {
                 Aktor aktor1 = new Aktor();
                 aktor1.setImie("AktorImie1");
                 aktor1.setNazwisko("AktorNazwisko1");
+                
+                
+                //dodatkowi
+                
+                  Aktor aktor10 = new Aktor();
+                aktor10.setImie("Michal");
+                aktor10.setNazwisko("Wisniewski");
+                  Aktor aktor100 = new Aktor();
+                aktor100.setImie("Jacek");
+                aktor100.setNazwisko("Stonoga");
+                  Aktor aktor1000 = new Aktor();
+                aktor1000.setImie("Dominik");
+                aktor1000.setNazwisko("Redzynia");
+                
+                em.persist(aktor10);
+                em.persist(aktor100);
+                em.persist(aktor1000);
+                //
+                
+                
                 
                 Aktor aktor2 = new Aktor();
                 aktor2.setImie("AktorImie2");
@@ -101,6 +125,16 @@ public class Main {
                 em.getTransaction().commit();
 
 		em.close();  
+                
+                
+                
+                //test wyszukiwania
+               // List<Aktor> hit;
+               // hit=Utilities.WyszukajPoNazwisku("Stonoga");
+               // System.out.println(hit.get(0).getNazwisko());
+                
+                
+                Utilities.WyszukajPoNazwiskuPartialy("Naz");
     }
     
 }
