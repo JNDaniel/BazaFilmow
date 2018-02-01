@@ -5,19 +5,57 @@
  */
 package bazafilmow;
 
+import bazafilmow.Utils;
 import bazafilmow.model.*;
 import javax.persistence.EntityManager;
-
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 /**
  *
- * @author Daniel
+ * @author Danielos and Michaelos
  */
-public class Main {
+
+
+public class Main extends Application{
     
-    /**
-     * @param args the command line arguments
-     */
+
+private BorderPane RootLayout;    
+
+    @Override
+    public void start(Stage primaryStage) {
+        try {
+
+	        FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(Main.class.getResource("RootLayout.fxml"));
+                RootLayout = loader.load();
+	          	        
+	            
+	        // Show the scene containing the root layout.
+	        Scene scene = new Scene(RootLayout);
+	        primaryStage.setMinHeight(340);
+	        primaryStage.setMinWidth(600);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                
+	} catch(Exception e) {
+                e.printStackTrace();
+	}
+    }
+       
+    
+    
     public static void main(String[] args) {
+        
+        launch(args);
+        
                 EntityManager em = Utils.getEntityManager();
 
 		em.getTransaction().begin();
