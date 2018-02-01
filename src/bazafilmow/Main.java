@@ -136,7 +136,20 @@ public class Main {
                 
               //  Utilities.WyszukajPoNazwiskuPartialy("Naz");
               
-              Utilities.WyszukajAktoraPoStringu("jac");
+           /*   
+              List<Aktor> hit;
+              hit=Utilities.WyszukajAktoraPoStringu("a");
+              System.out.println(hit.size());
+              
+              List<Aktor> hit2;
+              hit2=Utilities.WyszukajAktoraPoStringuBezPowtorzen("a");
+              System.out.println(hit2.size());
+
+
+                */
+           
+           Utilities.WyszukajFilmPoStringuBezPowtorzen("szyb");
+           
     }
     
 }
