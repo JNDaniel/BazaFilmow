@@ -5,7 +5,7 @@
  */
 package bazafilmow.model;
 
-import com.sun.istack.internal.NotNull;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
