@@ -134,7 +134,9 @@ public class Main {
                // System.out.println(hit.get(0).getNazwisko());
                 
                 
-                Utilities.WyszukajPoNazwiskuPartialy("Naz");
+              //  Utilities.WyszukajPoNazwiskuPartialy("Naz");
+              
+              Utilities.WyszukajAktoraPoStringu("jac");
     }
     
 }

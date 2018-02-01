@@ -58,7 +58,7 @@ public class Utilities {
        // System.out.println(i); 
         
        Wynik.add(Aktorzy.get(i));  
-       System.out.println(Aktorzy.get(i).getNazwisko());
+     //  System.out.println(Aktorzy.get(i).getNazwisko());
        
          }
  
@@ -69,6 +69,49 @@ public class Utilities {
      return Wynik;
  }
      
+ 
+ //sprawdza czy pasuje jako imie lub nazwisko
+ public static List<Aktor> WyszukajAktoraPoStringu(String Nazwisko){
+ 
+     List<Aktor> Aktorzy;
+      List<Aktor> Wynik = new ArrayList<Aktor>() ;
+     
+      EntityManager em = Utils.getEntityManager();
+     
+      Aktorzy=em.createNamedQuery("Aktor.findAll").getResultList();
+    
+       Nazwisko=Nazwisko.toLowerCase();
+      
+      
+      //System.out.println(Aktorzy.size());
+      for(int i=0;i<Aktorzy.size();i++){
+         
+      if(Aktorzy.get(i).getNazwisko().toLowerCase().contains(Nazwisko)==true){
+     
+       // System.out.println(i);   
+       Wynik.add(Aktorzy.get(i));  
+     //  System.out.println(Aktorzy.get(i).getNazwisko());  
+                }
+        }   
+      
+      
+       for(int i=0;i<Aktorzy.size();i++){
+         
+      if(Aktorzy.get(i).getImie().toLowerCase().contains(Nazwisko)==true){
+     
+       // System.out.println(i);   
+       Wynik.add(Aktorzy.get(i));  
+       System.out.println(Aktorzy.get(i).getImie());  
+                }
+        }  
+      
+     
+    
+     return Wynik;
+ }
+ 
+ 
+ 
  
  
 }
