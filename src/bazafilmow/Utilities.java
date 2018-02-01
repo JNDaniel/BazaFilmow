@@ -210,5 +210,79 @@ return Lista;
  
  
  
+ public static List<Aktor> PodajListeAktor(){
+ List<Aktor> Aktorzy;
+ 
+ 
+     EntityManager em = Utils.getEntityManager();
+
+     Aktorzy=em.createNamedQuery("Aktor.findAllAlpha").getResultList();
+     
+     
+     
+     return Aktorzy;
+ 
+ }
+ 
+  public static List<Film> PodajListeFilm(){
+ List<Film> Filmy;
+ 
+ 
+     EntityManager em = Utils.getEntityManager();
+
+     Filmy=em.createNamedQuery("Film.findAllAlpha").getResultList();
+     
+     
+     
+     return Filmy;
+ 
+ }
+  
+  
+  
+   public static List<Gatunek> PodajListeGatunk(){
+ List<Gatunek> Gatunki;
+ 
+ 
+     EntityManager em = Utils.getEntityManager();
+
+     Gatunki=em.createNamedQuery("Gatunek.findAllAlpha").getResultList();
+     
+     
+     
+     return Gatunki;
+ 
+ }
+   
+   
+   
+     public static List<Kraj> PodajListeKraj(){
+ List<Kraj> Kraje;
+ 
+ 
+     EntityManager em = Utils.getEntityManager();
+
+     Kraje=em.createNamedQuery("Kraj.findAllAlpha").getResultList();
+     
+     
+     
+     return Kraje;
+ 
+ }
+ 
+        public static List<Rezyser> PodajListeRezyser(){
+ List<Rezyser> Rezyserowe;
+ 
+ 
+     EntityManager em = Utils.getEntityManager();
+
+     Rezyserowe=em.createNamedQuery("Rezyser.findAllAlpha").getResultList();
+     
+     
+     
+     return Rezyserowe;
+ 
+ }  
+   
 
 }
