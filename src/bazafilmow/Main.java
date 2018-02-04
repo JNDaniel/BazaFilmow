@@ -54,7 +54,6 @@ private BorderPane RootLayout;
     
     public static void main(String[] args) {
         
-        launch(args);
         
                 EntityManager em = Utils.getEntityManager();
 
@@ -138,6 +137,8 @@ private BorderPane RootLayout;
                 em.getTransaction().commit();
 
 		em.close();  
+                
+                launch(args);
     }
     
 }
