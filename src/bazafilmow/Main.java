@@ -5,27 +5,62 @@
  */
 package bazafilmow;
 
+import bazafilmow.Utils;
 import bazafilmow.model.*;
 import bazafilmow.Utilities;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 /**
  *
- * @author Daniel
+ * @author Danielos and Michaelos
  */
-public class Main {
+
+
+public class Main extends Application{
     
-    /**
-     * @param args the command line arguments
-     */
+
+private BorderPane RootLayout;    
+
+    @Override
+    public void start(Stage primaryStage) {
+        try {
+
+	        FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(Main.class.getResource("RootLayout.fxml"));
+                RootLayout = loader.load();
+	          	        
+	            
+	        // Show the scene containing the root layout.
+	        Scene scene = new Scene(RootLayout);
+	        primaryStage.setMinHeight(340);
+	        primaryStage.setMinWidth(600);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                
+	} catch(Exception e) {
+                e.printStackTrace();
+	}
+    }
+       
+    
+    
     public static void main(String[] args) {
-        //test
+
                 EntityManager em = Utils.getEntityManager();
 
-		em.getTransaction().begin();
+		            em.getTransaction().begin();
                 
                 Film f = new Film();
                 Film f2 = new Film();
@@ -124,51 +159,10 @@ public class Main {
                 //Utils.loadKraje();
                 em.getTransaction().commit();
 
-		em.close();  
+		            em.close();  
                 
-                
-                
-                //test wyszukiwania
-               // List<Aktor> hit;
-               // hit=Utilities.WyszukajPoNazwisku("Stonoga");
-               // System.out.println(hit.get(0).getNazwisko());
-                
-                
-              //  Utilities.WyszukajPoNazwiskuPartialy("Naz");
-              
-           /*   
-              List<Aktor> hit;
-              hit=Utilities.WyszukajAktoraPoStringu("a");
-              System.out.println(hit.size());
-              
-              List<Aktor> hit2;
-              hit2=Utilities.WyszukajAktoraPoStringuBezPowtorzen("a");
-              System.out.println(hit2.size());
 
-
-                */
-           
-           //Utilities.WyszukajFilmPoStringuBezPowtorzen("szyb");
-           
-           
-           //List<Aktor> hit3;
-           //hit3=Utilities.PodajListeAktor();
-           
-           //System.out.println(hit3.size());
-           
-           //for(int i=0;i<hit3.size();i++){
-         //  System.out.println(hit3.get(i).getNazwisko());
-             
-        //}
-        //List<Aktor> hit3;
-           //hit3=Utilities.PodajListeAktor();
-        List<Rezyser> hit3;
-       hit3= Utilities.WyszukajRezyseraPoStringu("Jan");
-        
-        System.out.println(hit3.get(0).getNazwisko());
-        
-        
-        
+                launch(args);
     }
     
 }
