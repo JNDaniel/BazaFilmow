@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Rezyser.findByImie", query = "SELECT r FROM Rezyser r WHERE r.imie = :imie")
     , @NamedQuery(name = "Rezyser.findByNazwisko", query = "SELECT r FROM Rezyser r WHERE r.nazwisko = :nazwisko")
     , @NamedQuery(name = "Rezyser.findByNarodowosc", query = "SELECT r FROM Rezyser r WHERE r.narodowosc = :narodowosc")
+        , @NamedQuery(name = "Rezyser.findAllAlpha", query = "SELECT r FROM Rezyser r order by r.nazwisko")
     , @NamedQuery(name = "Rezyser.findByDataUrodzenia", query = "SELECT r FROM Rezyser r WHERE r.dataUrodzenia = :dataUrodzenia")})
 public class Rezyser implements Serializable {
 

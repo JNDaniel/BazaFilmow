@@ -7,6 +7,10 @@ package bazafilmow;
 
 import bazafilmow.Utils;
 import bazafilmow.model.*;
+import bazafilmow.Utilities;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -53,11 +57,10 @@ private BorderPane RootLayout;
     
     
     public static void main(String[] args) {
-        
-        
+
                 EntityManager em = Utils.getEntityManager();
 
-		em.getTransaction().begin();
+		            em.getTransaction().begin();
                 
                 Film f = new Film();
                 Film f2 = new Film();
@@ -79,6 +82,26 @@ private BorderPane RootLayout;
                 Aktor aktor1 = new Aktor();
                 aktor1.setImie("AktorImie1");
                 aktor1.setNazwisko("AktorNazwisko1");
+                
+                
+                //dodatkowi
+                
+                  Aktor aktor10 = new Aktor();
+                aktor10.setImie("Michal");
+                aktor10.setNazwisko("Wisniewski");
+                  Aktor aktor100 = new Aktor();
+                aktor100.setImie("Jacek");
+                aktor100.setNazwisko("Stonoga");
+                  Aktor aktor1000 = new Aktor();
+                aktor1000.setImie("Dominik");
+                aktor1000.setNazwisko("Redzynia");
+                
+                em.persist(aktor10);
+                em.persist(aktor100);
+                em.persist(aktor1000);
+                //
+                
+                
                 
                 Aktor aktor2 = new Aktor();
                 aktor2.setImie("AktorImie2");
@@ -136,9 +159,11 @@ private BorderPane RootLayout;
                 //Utils.loadKraje();
                 em.getTransaction().commit();
 
-		em.close();  
+		            em.close();  
                 
+
                 launch(args);
     }
     
 }
+
