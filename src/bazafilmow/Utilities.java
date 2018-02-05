@@ -210,6 +210,61 @@ return Lista;
  
  
  
+ private static List<Rezyser> SprawdzRezysera(List<Rezyser> Lista,Rezyser  nowy){
+ 
+     int dodanie=0;
+    for(int i=0;i<Lista.size();i++){
+    if(Lista.get(i).equals(nowy)==true){
+    dodanie=1;
+         }
+     }    
+    if(dodanie==0){
+    Lista.add(nowy);  
+     }   
+return Lista;
+ }
+ 
+ 
+  public static List<Rezyser> WyszukajRezyseraPoStringu(String Nazwisko){
+ 
+     List<Rezyser> Aktorzy;
+      List<Rezyser> Wynik = new ArrayList<Rezyser>() ;
+     
+      EntityManager em = Utils.getEntityManager();
+     
+      Aktorzy=em.createNamedQuery("Rezyser.findAll").getResultList();
+    
+       Nazwisko=Nazwisko.toLowerCase();
+      
+      
+      //System.out.println(Aktorzy.size());
+      for(int i=0;i<Aktorzy.size();i++){
+         
+      if(Aktorzy.get(i).getNazwisko().toLowerCase().contains(Nazwisko)==true){
+     
+       // System.out.println(i);   
+       Wynik.add(Aktorzy.get(i));  
+      // System.out.println(Aktorzy.get(i).getNazwisko());  //testy
+                }
+        }      
+       for(int i=0;i<Aktorzy.size();i++){   
+      if(Aktorzy.get(i).getImie().toLowerCase().contains(Nazwisko)==true){
+     
+       // System.out.println(i);   
+       Wynik.add(Aktorzy.get(i));  
+       //System.out.println(Aktorzy.get(i).getImie());  
+                }
+        }  
+      
+     
+    
+     return Wynik;
+ }
+ 
+ 
+ 
+ 
+ 
  public static List<Aktor> PodajListeAktor(){
  List<Aktor> Aktorzy;
  
