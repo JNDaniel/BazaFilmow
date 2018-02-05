@@ -148,8 +148,28 @@ public class Main {
 
                 */
            
-           Utilities.WyszukajFilmPoStringuBezPowtorzen("szyb");
+           //Utilities.WyszukajFilmPoStringuBezPowtorzen("szyb");
            
+           
+           //List<Aktor> hit3;
+           //hit3=Utilities.PodajListeAktor();
+           
+           //System.out.println(hit3.size());
+           
+           //for(int i=0;i<hit3.size();i++){
+         //  System.out.println(hit3.get(i).getNazwisko());
+             
+        //}
+        //List<Aktor> hit3;
+           //hit3=Utilities.PodajListeAktor();
+        List<Rezyser> hit3;
+       hit3= Utilities.WyszukajRezyseraPoStringu("Jan");
+        
+        System.out.println(hit3.get(0).getNazwisko());
+        
+        
+        
     }
     
 }
+
