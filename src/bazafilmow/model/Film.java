@@ -5,6 +5,7 @@
  */
 package bazafilmow.model;
 
+import bazafilmow.Utils;
 import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -95,7 +97,7 @@ public class Film implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "gatunek_id")
     )
     Set<Gatunek> gatunki = new HashSet<>();
-    
+
     public Film() {
     }
 
@@ -204,26 +206,30 @@ public class Film implements Serializable {
     public void addKraj(Kraj k)
     {
         this.kraje.add(k);
+        k.getFilmy().add(this);
     }
     public void deleteKraj(Kraj k)
     {
         this.kraje.remove(k);
+        k.getFilmy().remove(this);
     }
 
     public Set<Rezyser> getRezyserzy() {
         return rezyserzy;
     }
-
+    
     public void setRezyserzy(Set<Rezyser> rezyserzy) {
         this.rezyserzy = rezyserzy;
     }
     public void addRezyser(Rezyser r)
     {
         this.rezyserzy.add(r);
+        r.getFilmy().add(this);
     }
     public void deleteRezyser(Rezyser r)
     {
         this.rezyserzy.remove(r);
+        r.getFilmy().remove(this);
     }
 
     public Set<Aktor> getAktorzy() {
@@ -237,10 +243,12 @@ public class Film implements Serializable {
     public void addAktor(Aktor a)
     {
         this.aktorzy.add(a);
+        a.getFilmy().add(this);
     }
     public void deleteAktor(Aktor a)
     {
         this.aktorzy.remove(a);
+        a.getFilmy().remove(this);
     }
 
     public Set<Gatunek> getGatunki() {
@@ -254,11 +262,13 @@ public class Film implements Serializable {
     public void addGatunek(Gatunek g)
     {
         this.gatunki.add(g);
+        g.getFilmy().add(this);
     }
     
     public void deleteGatunek(Gatunek g)
     {
         this.gatunki.remove(g);
+        g.getFilmy().remove(this);
     }
     
     @Override
