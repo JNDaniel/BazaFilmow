@@ -91,13 +91,13 @@ public class Gatunek implements Serializable {
     public void addFilm(Film f)
     {
         this.filmy.add(f);
-        f.addGatunek(this);
+        f.getGatunki().add(this);
     }
     
     public void deleteFilm(Film f)
     {
         this.filmy.remove(f);
-        f.deleteGatunek(this);
+        f.getGatunki().remove(this);
     }
 
     @Override

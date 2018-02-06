@@ -141,30 +141,50 @@ private BorderPane RootLayout;
                 f.addRezyser(rez2);
                 f2.addRezyser(rez2);
                 
-                f.addAktor(aktor1);
-                f.addAktor(aktor2);
-                f2.addAktor(aktor2);
-                //f.deleteAktor(aktor1);
+                
+                
+ 
+               //em.persist(aktor2);
+               //em.persist(aktor1);
                
-               em.persist(f);
-               em.persist(f2);
-     
+               f.addAktor(aktor1);
+               //f.addAktor(aktor2);
+               //f2.addAktor(aktor2);
+               aktor1.addFilm(f2);
+               em.getTransaction().commit();
+               
+               em.getTransaction().begin();
+  
+               
+               
+               
+               em.persist(gatunek1);
+               em.persist(gatunek2);
                f2.addGatunek(gatunek1);
                f.addGatunek(gatunek2);
                f.addGatunek(gatunek1);
                f2.addGatunek(gatunek2);
+                
+                em.refresh(aktor1);
+                aktor1.deleteFilm(f);
+                //f2.deleteAktor(aktor1);
+
                
-               f2.deleteGatunek(gatunek1);
+                
+                System.out.println(f.getTytul()+" "+f.getAktorzy());
+                System.out.println(f2.getTytul()+" "+f2.getAktorzy());
+                
+
+                System.out.println(aktor1.getImie()+" "+aktor1.getFilmy());
                 
                 
-                //f.deleteRezyser(rez1); //usuniecie po persist niszczy relacje ale zostawia rekord rezyser w bazie
-                //Utils.loadKraje();
+
                 em.getTransaction().commit();
-
-		            em.close();  
+		em.close();
                 
 
-                launch(args);
+    launch(args);
+
     }
     
 }
