@@ -103,23 +103,11 @@ public class Main {
                f.addGatunek(gatunek1);
                f2.addGatunek(gatunek2);
                 
-                //Utils.loadKraje();
-
-                //f.deleteAktor(aktor1);
+                em.refresh(aktor1);
+                aktor1.deleteFilm(f);
                 //f2.deleteAktor(aktor1);
 
-
-
-                
-
-                //em.remove(aktor1);
-                
-                //f2.deleteAktor(aktor1);
-                
-                
-                
-
-                
+               
                 
                 System.out.println(f.getTytul()+" "+f.getAktorzy());
                 System.out.println(f2.getTytul()+" "+f2.getAktorzy());
@@ -128,11 +116,11 @@ public class Main {
                 System.out.println(aktor1.getImie()+" "+aktor1.getFilmy());
                 
                 
-                
+
                 em.getTransaction().commit();
 		em.close();
+
                 
-            
     }
     
 }

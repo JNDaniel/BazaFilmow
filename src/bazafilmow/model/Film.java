@@ -149,20 +149,6 @@ public class Film implements Serializable {
     public void setFilmId(Integer filmId) {
         this.filmId = filmId;
     }
-    public void clear()
-    { //TODO:  napsiz prawodlowa implementacje
-//        for(Gatunek g : this.getGatunki())
-//        {
-//            g.getFilmy().remove(this);
-//        }
-//        this.gatunki.clear();
-//        
-//        this.kraje.clear();
-//        
-//        this.rezyserzy.clear();
-        
-        this.aktorzy.clear();
-    }
 
     @Override
     public int hashCode() {
@@ -220,26 +206,30 @@ public class Film implements Serializable {
     public void addKraj(Kraj k)
     {
         this.kraje.add(k);
+        k.getFilmy().add(this);
     }
     public void deleteKraj(Kraj k)
     {
         this.kraje.remove(k);
+        k.getFilmy().remove(this);
     }
 
     public Set<Rezyser> getRezyserzy() {
         return rezyserzy;
     }
-
+    
     public void setRezyserzy(Set<Rezyser> rezyserzy) {
         this.rezyserzy = rezyserzy;
     }
     public void addRezyser(Rezyser r)
     {
         this.rezyserzy.add(r);
+        r.getFilmy().add(this);
     }
     public void deleteRezyser(Rezyser r)
     {
         this.rezyserzy.remove(r);
+        r.getFilmy().remove(this);
     }
 
     public Set<Aktor> getAktorzy() {
@@ -257,8 +247,8 @@ public class Film implements Serializable {
     }
     public void deleteAktor(Aktor a)
     {
-        a.getFilmy().remove(this);
         this.aktorzy.remove(a);
+        a.getFilmy().remove(this);
     }
 
     public Set<Gatunek> getGatunki() {
@@ -272,11 +262,13 @@ public class Film implements Serializable {
     public void addGatunek(Gatunek g)
     {
         this.gatunki.add(g);
+        g.getFilmy().add(this);
     }
     
     public void deleteGatunek(Gatunek g)
     {
         this.gatunki.remove(g);
+        g.getFilmy().remove(this);
     }
     
     @Override
