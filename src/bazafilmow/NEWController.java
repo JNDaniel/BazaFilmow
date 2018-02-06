@@ -242,4 +242,66 @@ public class NEWController implements Initializable {
 	                app_stage.show();
             }
             
+            
+            //zakładam że sam film został juz utworzony i jest w bazie
+            
+            private void dodanieGatunkowDoFilmu(Film film1){
+                
+                Gatunek g = new Gatunek();
+                
+                 EntityManager em = Utils.getEntityManager();
+                 em.getTransaction().begin();
+            
+            
+                if(Obyczajowy.isSelected()){
+                g=Utilities3.dajGatunek("Obyczajowy");
+                film1.addGatunek(g);
+                }
+                 if(Komedia.isSelected()){
+                g=Utilities3.dajGatunek("Komedia");
+                film1.addGatunek(g);
+                }
+                 
+                  if(Akcji.isSelected()){
+                g=Utilities3.dajGatunek("Akcji");
+                film1.addGatunek(g);
+                }
+                  
+                if(Sensacyjny.isSelected()){
+                g=Utilities3.dajGatunek("Sensacyjny");
+                film1.addGatunek(g);
+                }
+                
+                if(Horror.isSelected()){
+                g=Utilities3.dajGatunek("Horror");
+                film1.addGatunek(g);
+                }
+                
+                if(Animowany.isSelected()){
+                g=Utilities3.dajGatunek("Animowany");
+                film1.addGatunek(g);
+                }
+                
+                if(Dramat.isSelected()){
+                g=Utilities3.dajGatunek("Dramat");
+                film1.addGatunek(g);
+                }
+                
+                if(Thriller.isSelected()){
+                g=Utilities3.dajGatunek("Thriller");
+                film1.addGatunek(g);
+                }
+                
+                if(Fantasy.isSelected()){
+                g=Utilities3.dajGatunek("Fantasy");
+                film1.addGatunek(g);
+                }
+            
+            
+            
+            
+                em.getTransaction().commit();
+                em.close();  
+            }
+            
 }
