@@ -123,14 +123,14 @@ public class Aktor implements Serializable {
     public void addFilm(Film f)
     {
         this.filmy.add(f);
-        f.addAktor(this);
+        f.getAktorzy().add(this);
     }
     public void deleteFilm(Film f)
     {
-        this.filmy.remove(f);
-        f.deleteAktor(this);
+        f.getAktorzy().remove(this);
+        this.getFilmy().remove(f);
     }
-
+    //TODO: implementacja preremove 
     @Override
     public int hashCode() {
         int hash = 5;

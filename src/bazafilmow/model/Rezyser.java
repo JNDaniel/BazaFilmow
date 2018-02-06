@@ -111,7 +111,6 @@ public class Rezyser implements Serializable {
     public void setDataUrodzenia(String dataUrodzenia) {
         this.dataUrodzenia = dataUrodzenia;
     }
-
     public Set<Film> getFilmy() {
         return filmy;
     }
@@ -123,14 +122,12 @@ public class Rezyser implements Serializable {
     public void addFilm(Film f)
     {
         this.filmy.add(f);
-        Set<Rezyser> rezyserzy = f.getRezyserzy();
-        rezyserzy.add(this);
-        f.setRezyserzy(rezyserzy);
+        f.getRezyserzy().add(this);
     }
     public void deleteFilm(Film f)
     {
         this.filmy.remove(f);
-        f.deleteRezyser(this);
+        f.getRezyserzy().remove(this);
     }
 
     @Override
