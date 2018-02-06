@@ -57,7 +57,9 @@ private BorderPane RootLayout;
     
     
     public static void main(String[] args) {
-
+                
+                Utilities3.dodajGatunki();
+                
                 EntityManager em = Utils.getEntityManager();
 
 		            em.getTransaction().begin();

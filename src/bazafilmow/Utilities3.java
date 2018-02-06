@@ -40,7 +40,7 @@ public class Utilities3 {
      
      g.setNazwa("Komedia");
      g1.setNazwa("Obyczajowy");
-     g2.setNazwa("Film akcji");
+     g2.setNazwa("Akcji");
      
      g3.setNazwa("Sensacyjny");
      g4.setNazwa("Horror");
