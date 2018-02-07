@@ -38,7 +38,7 @@ public class Utils {
 	}
         for(Kraj k : kraje)
         {
-            em.persist(k);
+            em.persist(k);  
         }
         //TODO: Kraje do tabeli w kolejnosci alfabetycznej
     }
