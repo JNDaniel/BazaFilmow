@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Gatunek.findAll", query = "SELECT g FROM Gatunek g")
     , @NamedQuery(name = "Gatunek.findByGatunekId", query = "SELECT g FROM Gatunek g WHERE g.gatunekId = :gatunekId")
+        , @NamedQuery(name = "Gatunek.findAllAlpha", query = "SELECT g FROM Gatunek g order by g.nazwa")
     , @NamedQuery(name = "Gatunek.findByNazwa", query = "SELECT g FROM Gatunek g WHERE g.nazwa = :nazwa")})
 public class Gatunek implements Serializable {
 

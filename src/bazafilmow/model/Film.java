@@ -5,8 +5,7 @@
  */
 package bazafilmow.model;
 
-import bazafilmow.Utils;
-import com.sun.istack.internal.NotNull;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -40,6 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Film.findByRokProd", query = "SELECT f FROM Film f WHERE f.rokProd = :rokProd")
     , @NamedQuery(name = "Film.findByBoxOffice", query = "SELECT f FROM Film f WHERE f.boxOffice = :boxOffice")
     , @NamedQuery(name = "Film.findByJezyk", query = "SELECT f FROM Film f WHERE f.jezyk = :jezyk")
+        ,@NamedQuery(name = "Film.findAllAlpha", query = "SELECT f FROM Film f order by f.tytul")
     , @NamedQuery(name = "Film.findByFilmId", query = "SELECT f FROM Film f WHERE f.filmId = :filmId")})
 public class Film implements Serializable {
 
