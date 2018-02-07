@@ -19,7 +19,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -31,6 +34,20 @@ public class MainController implements Initializable {
     @FXML
     private Button  newMovie;
     
+    @FXML 
+    private Button EditMovie;
+    
+    @FXML
+    private Button Look;
+    
+    @FXML
+    private Button Muzyka;
+    
+    final URL resource = getClass().getResource("Nice.mp3");
+    final Media media = new Media(resource.toString());
+    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -39,18 +56,47 @@ public class MainController implements Initializable {
         
             
     }
-
+        
+        @FXML
+        private void handleMusic(ActionEvent event){
+                       
+            boolean flag = true;
+            mediaPlayer.play();
+            
+            if(flag == true){
+                mediaPlayer.pause();                
+                flag = false;  
+            }
+               
+        }
+    
+        
 	 @FXML
             private void handleButtonAction(ActionEvent event) throws IOException {
 	        System.out.println("You clicked me!");
 	        Parent movie_parent = FXMLLoader.load(getClass().getResource("NEW.fxml"));
-	        Scene movie_scene = new Scene(movie_parent);
+	        Scene movie_scene = new Scene(movie_parent);             
 	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                app_stage.setTitle("Nowy Film");
 	          
 	                app_stage.hide(); //optional
 	                app_stage.setScene(movie_scene);
 	                app_stage.show();  
 	            	            
 	    }    
+            
+            @FXML
+            private void handleEditButtonAction(ActionEvent event) throws IOException {
+	        System.out.println("You clicked me!");
+	        Parent movie_parent = FXMLLoader.load(getClass().getResource("EDIT.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);             
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                app_stage.setTitle("Edytuj Film");
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();  
+	            	            
+	    } 
     
 }
