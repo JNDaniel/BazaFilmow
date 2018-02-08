@@ -238,7 +238,7 @@ public class NEWController implements Initializable {
                 Film f = new Film();
                 boolean flag =false;
                 
-<<<<<<< HEAD
+
                 short RokValue = Short.parseShort(Rok.getText());
                 f.setRokProd(RokValue);
                  
@@ -253,7 +253,6 @@ public class NEWController implements Initializable {
                 
 	        
                 em.persist(f);             
-=======
                // f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
                // em.persist(f);
                 
@@ -288,7 +287,7 @@ public class NEWController implements Initializable {
                 }
                 else{
                     
-                    short RokValue = Short.parseShort(Rok.getText());
+                     RokValue = Short.parseShort(Rok.getText()); //-short
                     f.setRokProd(RokValue);
                     em.persist(f); 
                     flag = true;
@@ -307,7 +306,7 @@ public class NEWController implements Initializable {
                 }
                 else{
                     
-                    float BoxOffice = Float.parseFloat(Money.getText());
+                    BoxOffice = Float.parseFloat(Money.getText()); //-float
                     f.setBoxOffice(BoxOffice);
                     em.persist(f);
                     flag = true;
@@ -316,7 +315,7 @@ public class NEWController implements Initializable {
                 
 
                 //f.addAktor((Aktor) WyborAktora.getSelectionModel().getSelectedItem());
->>>>>>> f7a68ec4e2a61849cd7a0526e6559eec51a91045
+
                 
                     for(int i=0;i<ViewAktorzy.getItems().size();i++){
                        

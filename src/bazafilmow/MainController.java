@@ -22,12 +22,9 @@ import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import javax.persistence.*;
-=======
 import javafx.util.Duration;
 
->>>>>>> f7a68ec4e2a61849cd7a0526e6559eec51a91045
 /**
  * FXML Controller class
  *
@@ -90,7 +87,7 @@ public class MainController implements Initializable {
 	                app_stage.show();  
 	            	            
 	    }    
-<<<<<<< HEAD
+
 
     @FXML
     private void GoSzukaj(ActionEvent event) throws IOException {
@@ -105,7 +102,7 @@ public class MainController implements Initializable {
 	                app_stage.setScene(movie_scene);
 	                app_stage.show();
     }
-=======
+
             
             @FXML
             private void handleEditButtonAction(ActionEvent event) throws IOException {
@@ -120,6 +117,5 @@ public class MainController implements Initializable {
 	                app_stage.show();  
 	            	            
 	    } 
->>>>>>> f7a68ec4e2a61849cd7a0526e6559eec51a91045
     
 }
