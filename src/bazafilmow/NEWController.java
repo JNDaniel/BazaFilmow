@@ -6,11 +6,15 @@
 package bazafilmow;
 
 import bazafilmow.Utils;
+import static bazafilmow.Utils.em;
+import bazafilmow.model.Aktor;
 import bazafilmow.model.Film;
 import bazafilmow.model.Gatunek;
 import bazafilmow.model.Kraj;
+import bazafilmow.model.Rezyser;
 import java.io.IOException;
 import java.net.URL;
+import static java.sql.JDBCType.NULL;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Locale;
@@ -28,8 +32,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -92,11 +99,20 @@ public class NEWController implements Initializable {
     @FXML
     private RadioButton Fantasy;
      
-    @FXML
-    private TextField RezField;
     
     @FXML
-    private TextField AktField;
+    private ListView ViewAktorzy;
+    
+    @FXML
+    private ListView ViewRezyserzy;
+    
+    @FXML
+    private Button RemoveAktora;
+    
+    @FXML
+    private Button RemoveRe;
+    
+    
     
     //static int count =1;
     
@@ -110,19 +126,24 @@ public class NEWController implements Initializable {
         ObservableList<String> list3 = FXCollections.observableArrayList();
         
         
-        
-	String[] locales = Locale.getISOCountries();		
+	//String[] locales = Locale.getISOCountries();		
 		 
-		for (String countryCode : locales) 
-                {                   
-                    Locale obj = new Locale("", countryCode);
-                    list.add(obj.getDisplayCountry());
-                }
+		//for (String countryCode : locales) 
+                //{                   
+                //    Locale obj = new Locale("", countryCode);
+                //    list.add(obj.getDisplayCountry());
+                //}
 			
-                WyborKraju.setItems(list);
-			    
+                //WyborKraju.setItems(list);
+		//WyborKraju.setItems(loadKraje());
+                
                 EntityManager em = Utils.getEntityManager();
-                //em.getTransaction().begin();
+                
+                
+                Query queryKraj = em.createNamedQuery("Kraj.findAll");
+                Collection kraje = queryKraj.getResultList();     
+                list.addAll(kraje);
+                WyborKraju.setItems(list);
 
                 Query queryAktorzy = em.createNamedQuery("Aktor.findAll");
                 Collection aktorzy = queryAktorzy.getResultList();     
@@ -141,24 +162,38 @@ public class NEWController implements Initializable {
                   //  @Override
                    // public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                         
-                 ObservableList<String> list = FXCollections.observableArrayList();
-                 EntityManager em = Utils.getEntityManager();
+                ObservableList<String> list = FXCollections.observableArrayList();
+                EntityManager em = Utils.getEntityManager();
                     
                 Query queryAktorzy = em.createNamedQuery("Aktor.findAll");
                 Collection aktorzy = queryAktorzy.getResultList();     
                 list.addAll(aktorzy);
                 WyborAktora.setItems(list);
                    
-                String output = WyborAktora.getSelectionModel().getSelectedItem().toString();
-                //System.out.println(output);
-                AktField.setText(output);
-                        
+                if(!ViewAktorzy.getItems().contains(WyborAktora.getSelectionModel().getSelectedItem())){                                           
+                 
+                    ViewAktorzy.getItems().add(WyborAktora.getSelectionModel().getSelectedItem());
+                    
+                }
+                                     
                    // }
                // });
             }
 
+            @FXML
+            private void comboActionKraj(){
+                
+                ObservableList<String> lista = FXCollections.observableArrayList();
+                EntityManager em = Utils.getEntityManager();
+                
+                Query queryKraj = em.createNamedQuery("Kraj.findAll");
+                Collection kraje = queryKraj.getResultList();     
+                lista.addAll(kraje);
+                WyborKraju.setItems(lista);
+                
+            }
             
-             @FXML
+            @FXML
             private void comboActionRezyser() {
                 //WyborAktora.valueProperty().addListener(new ChangeListener<String>() {
                   //  @Override
@@ -172,15 +207,26 @@ public class NEWController implements Initializable {
                 list.addAll(rezyserzy);
                 WyborRe.setItems(list);
                 
-                String output = WyborRe.getSelectionModel().getSelectedItem().toString();
-                //System.out.println(output);
-                RezField.setText(output);
-                        
+                if(!ViewRezyserzy.getItems().contains(WyborRe.getSelectionModel().getSelectedItem())){                                           
+                
+                    ViewRezyserzy.getItems().add(WyborRe.getSelectionModel().getSelectedItem());
+                    
+                }
                    // }
                // });
             }
             
+            @FXML
+	    private void handleUsunButtonAkt(ActionEvent event){
+                ViewAktorzy.getItems().remove(ViewAktorzy.getSelectionModel().getSelectedItem());
+            }
     
+            
+            @FXML
+	    private void handleUsunButtonRez(ActionEvent event){
+                ViewRezyserzy.getItems().remove(ViewRezyserzy.getSelectionModel().getSelectedItem());
+            }
+            
             @FXML
 	    private void handleOKButton(ActionEvent event) throws IOException{
 	        System.out.println("OK Clicked");
@@ -188,9 +234,11 @@ public class NEWController implements Initializable {
                 EntityManager em = Utils.getEntityManager();
                 em.getTransaction().begin();
                 
-                Film f = new Film();
-                f.setTytul(Tytul.getText());
                 
+                Film f = new Film();
+                boolean flag =false;
+                
+<<<<<<< HEAD
                 short RokValue = Short.parseShort(Rok.getText());
                 f.setRokProd(RokValue);
                  
@@ -205,10 +253,94 @@ public class NEWController implements Initializable {
                 
 	        
                 em.persist(f);             
+=======
+               // f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
+               // em.persist(f);
                 
+                if (Tytul.getText() == null || Tytul.getText().trim().isEmpty()) {
+                    
+                     Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("NULL ERROR");
+                    alert.setHeaderText("Tytuł nie może być NULL");
+                    alert.setContentText("Zmień tytuł!");
+
+                    alert.showAndWait();
+                    flag = false;
+                   
+                }
+                else{
+                    
+                    f.setTytul(Tytul.getText());
+                    em.persist(f); 
+                    flag = true;       
+                    
+                }
+                
+                if (Rok.getText() == null || Rok.getText().trim().isEmpty()){
+                    
+                     Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("NULL ERROR");
+                    alert.setHeaderText("Rok nie może być NULL");
+                    alert.setContentText("Zmień rok!");
+
+                    alert.showAndWait();
+                    flag = false;
+                }
+                else{
+                    
+                    short RokValue = Short.parseShort(Rok.getText());
+                    f.setRokProd(RokValue);
+                    em.persist(f); 
+                    flag = true;
+                    
+                }
+                
+                if (Money.getText() == null || Money.getText().trim().isEmpty()){ 
+                    
+                     Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("NULL ERROR");
+                    alert.setHeaderText("BoxOffice nie może być NULL");
+                    alert.setContentText("Zmień BoxOffice!");
+
+                    alert.showAndWait();
+                    flag = false;
+                }
+                else{
+                    
+                    float BoxOffice = Float.parseFloat(Money.getText());
+                    f.setBoxOffice(BoxOffice);
+                    em.persist(f);
+                    flag = true;
+                                  
+                }
+                
+
+                //f.addAktor((Aktor) WyborAktora.getSelectionModel().getSelectedItem());
+>>>>>>> f7a68ec4e2a61849cd7a0526e6559eec51a91045
+                
+                    for(int i=0;i<ViewAktorzy.getItems().size();i++){
+                       
+                       f.addAktor((Aktor) ViewAktorzy.getItems().get(i));
+                    }
+                em.persist(f);                         
+                System.out.println(f.getAktorzy());
+                
+                
+                    for(int i=0;i<ViewRezyserzy.getItems().size();i++){
+                       
+                       f.addRezyser((Rezyser) ViewRezyserzy.getItems().get(i));
+                    }
+                    
+                em.persist(f);
+                System.out.println(f.getRezyserzy());
+                
+                
+                
+                if(flag == true){
+      
                 em.getTransaction().commit();
 
-		em.close();  
+		em.close();
                 
                 
                
@@ -220,6 +352,9 @@ public class NEWController implements Initializable {
 	                app_stage.hide(); //optional
 	                app_stage.setScene(movie_scene);
 	                app_stage.show();
+                
+                }
+                
                 
 	    }
     

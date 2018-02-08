@@ -6,6 +6,7 @@
 package bazafilmow;
 
 import bazafilmow.Utils;
+import static bazafilmow.Utils.loadKraje;
 import bazafilmow.model.*;
 import bazafilmow.Utilities;
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 /**
  *
@@ -40,7 +40,7 @@ private BorderPane RootLayout;
 	        FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(Main.class.getResource("RootLayout.fxml"));
                 RootLayout = loader.load();
-	          	        
+	          	                       
 	            
 	        // Show the scene containing the root layout.
 	        Scene scene = new Scene(RootLayout);
@@ -66,8 +66,9 @@ private BorderPane RootLayout;
                 
                 EntityManager em = Utils.getEntityManager();
 
-		            em.getTransaction().begin();
-                
+		em.getTransaction().begin();
+                loadKraje();
+        
                 Film f = new Film();
                 Film f2 = new Film();
                 Film f3 = new Film();
@@ -76,14 +77,14 @@ private BorderPane RootLayout;
                 f2.setTytul("Szybsi");
                 f3.setTytul("Najszybsi");
                 
-                Kraj x = new Kraj();
-                x.setNazwa("Polska");
+                //Kraj x = new Kraj();
+                //x.setNazwa("Polska");
                 
-                Kraj y = new Kraj();
-                y.setNazwa("NiePolska");
+               // Kraj y = new Kraj();
+                //y.setNazwa("NiePolska");
                 
-                f.addKraj(x); //dodanie krajow do filmow
-                f2.addKraj(x);
+               // f.addKraj(x); //dodanie krajow do filmow
+               //f2.addKraj(x);
                 
                 Aktor aktor1 = new Aktor();
                 aktor1.setImie("AktorImie1");

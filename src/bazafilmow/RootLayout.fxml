@@ -6,11 +6,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="BorderPane" prefHeight="400.0" prefWidth="600.0" style="-fx-border-width: 4;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bazafilmow.MainController">
+
+<BorderPane id="BorderPane" prefHeight="500.0" prefWidth="600.0" style="-fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bazafilmow.MainController">
+
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="357.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="newMovie" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="200.0" text="New Film">
+            <Button fx:id="newMovie" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="200.0" text="Stwórz Film">
                <font>
                   <Font size="24.0" />
                </font>
@@ -18,7 +20,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="200.0" text="Edit Film">
+            <Button fx:id="EditMovie" mnemonicParsing="false" onAction="#handleEditButtonAction" prefWidth="200.0" text="Edytuj Film">
                <font>
                   <Font size="24.0" />
                </font>
@@ -26,7 +28,7 @@
                   <Insets top="50.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="200.0" text="Delete Film">
+            <Button fx:id="Look" mnemonicParsing="false" prefWidth="200.0" text="Przeglądaj filmy">
                <font>
                   <Font size="24.0" />
                </font>
@@ -43,4 +45,11 @@
    <left>
       <Button id="Sz1" fx:id="SzukajAktora" mnemonicParsing="false" onAction="#GoSzukaj" prefHeight="31.0" prefWidth="64.0" text="SzukajAktora" BorderPane.alignment="CENTER" />
    </left>
+   <top>
+      <Button fx:id="Muzyka" mnemonicParsing="false" onAction="#handleMusic" prefHeight="42.0" prefWidth="105.0" text="Music" BorderPane.alignment="BOTTOM_LEFT">
+         <BorderPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </BorderPane.margin>
+      </Button>
+   </top>
 </BorderPane>

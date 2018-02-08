@@ -67,9 +67,9 @@ public class NewAktorController implements Initializable {
             aktor.setNazwisko(nazwisko.getText());
             aktor.setNarodowosc(narod.getText());
             aktor.setDataUrodzenia(urodz.getText());
-            
-            em.persist(aktor);
-            
+                 
+                em.persist(aktor);
+                  
             em.getTransaction().commit();
 
             em.close(); 
