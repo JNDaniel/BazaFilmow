@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javax.persistence.*;
 import javafx.util.Duration;
 
 /**
@@ -33,6 +34,8 @@ public class MainController implements Initializable {
 
     @FXML
     private Button  newMovie;
+    @FXML
+    private Button SzukajAktora;
     
     @FXML 
     private Button EditMovie;
@@ -84,6 +87,22 @@ public class MainController implements Initializable {
 	                app_stage.show();  
 	            	            
 	    }    
+
+
+    @FXML
+    private void GoSzukaj(ActionEvent event) throws IOException {
+           
+        
+            System.out.println("You clicked me!");
+	        Parent movie_parent = FXMLLoader.load(getClass().getResource("SearchingTest1.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();
+    }
+
             
             @FXML
             private void handleEditButtonAction(ActionEvent event) throws IOException {

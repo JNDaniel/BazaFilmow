@@ -16,8 +16,11 @@ import java.io.IOException;
 import java.net.URL;
 import static java.sql.JDBCType.NULL;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeSet;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -129,6 +132,8 @@ public class NEWController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        Utilities3.dodajGatunki();
         
         ObservableList<String> list = FXCollections.observableArrayList();
         ObservableList<String> list2 = FXCollections.observableArrayList();
@@ -247,11 +252,29 @@ public class NEWController implements Initializable {
                 Film f = new Film();
                 boolean flag =false;
                 
+
+
+                short RokValue = Short.parseShort(Rok.getText());
+                f.setRokProd(RokValue);
+                 
+                float BoxOffice = Float.parseFloat(Money.getText());
+                f.setBoxOffice(BoxOffice);
+                
+                 Set<Gatunek> gg=dodanieGatunkowDoFilmu();
+                 if(gg.isEmpty()==false){
+                 f.setGatunki(gg);
+                 
+                 }
+                
+	        
+                em.persist(f);             
+
                 
                 dodanieGatunkowDoFilmu(f);
                 
                 System.out.println(f.getGatunki());
                 
+
                // f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
                // em.persist(f);
                 
@@ -286,7 +309,7 @@ public class NEWController implements Initializable {
                 }
                 else{
                     
-                    short RokValue = Short.parseShort(Rok.getText());
+                     RokValue = Short.parseShort(Rok.getText()); //-short
                     f.setRokProd(RokValue);
                     em.persist(f); 
                     flag = true;
@@ -305,7 +328,7 @@ public class NEWController implements Initializable {
                 }
                 else{
                     
-                    float BoxOffice = Float.parseFloat(Money.getText());
+                    BoxOffice = Float.parseFloat(Money.getText()); //-float
                     f.setBoxOffice(BoxOffice);
                     em.persist(f);
                     flag = true;
@@ -314,6 +337,7 @@ public class NEWController implements Initializable {
                 
 
                 //f.addAktor((Aktor) WyborAktora.getSelectionModel().getSelectedItem());
+
                 
                     for(int i=0;i<ViewAktorzy.getItems().size();i++){
                        
@@ -338,6 +362,9 @@ public class NEWController implements Initializable {
                 em.getTransaction().commit();
 
 		em.close();
+                
+                
+               
                 
                 Parent movie_parent = FXMLLoader.load(getClass().getResource("RootLayout.fxml"));
 	        Scene movie_scene = new Scene(movie_parent);
@@ -389,63 +416,64 @@ public class NEWController implements Initializable {
             
             //zakładam że sam film został juz utworzony i jest w bazie
             
-            private void dodanieGatunkowDoFilmu(Film film1){
+            private Set<Gatunek> dodanieGatunkowDoFilmu(){
                 
                 Gatunek g = new Gatunek();
                 
-                 EntityManager em = Utils.getEntityManager();
-                 em.getTransaction().begin();
+                 Set<Gatunek> SetG = new HashSet<Gatunek>();
             
             
-                if(Obyczajowy.isSelected()){
+                if(Obyczajowy.isSelected()==true){
                 g=Utilities3.dajGatunek("Obyczajowy");
-                film1.addGatunek(g);
+                SetG.add(g);
+                
                 }
-                 if(Komedia.isSelected()){
-                g=Utilities3.dajGatunek("Komedia");
-                film1.addGatunek(g);
+                 if(Komedia.isSelected()==true){
+                Gatunek g1=Utilities3.dajGatunek("Komedia");
+                System.out.println(g1.getNazwa());
+                  SetG.add(g1);
                 }
                  
-                  if(Akcji.isSelected()){
+                  if(Akcji.isSelected()==true){
                 g=Utilities3.dajGatunek("Akcji");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                   
-                if(Sensacyjny.isSelected()){
+                if(Sensacyjny.isSelected()==true){
                 g=Utilities3.dajGatunek("Sensacyjny");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Horror.isSelected()){
+                if(Horror.isSelected()==true){
                 g=Utilities3.dajGatunek("Horror");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Animowany.isSelected()){
+                if(Animowany.isSelected()==true){
                 g=Utilities3.dajGatunek("Animowany");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Dramat.isSelected()){
+                if(Dramat.isSelected()==true){
                 g=Utilities3.dajGatunek("Dramat");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Thriller.isSelected()){
+                if(Thriller.isSelected()==true){
                 g=Utilities3.dajGatunek("Thriller");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Fantasy.isSelected()){
+                if(Fantasy.isSelected()==true){
                 g=Utilities3.dajGatunek("Fantasy");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
             
                 if(Sci.isSelected()){
                 g=Utilities3.dajGatunek("Sci-Fi");
                 film1.addGatunek(g);
                 }
-            
+                     
                 if(Dokument.isSelected()){
                 g=Utilities3.dajGatunek("Dokumentalny");
                 film1.addGatunek(g);
@@ -455,7 +483,8 @@ public class NEWController implements Initializable {
                 g=Utilities3.dajGatunek("Przygodowy");
                 film1.addGatunek(g);
                 }
-                
+              return SetG;  
+            }
             
                 em.getTransaction().commit();
                 em.close();  

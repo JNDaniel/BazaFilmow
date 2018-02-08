@@ -59,6 +59,10 @@ private BorderPane RootLayout;
     public static void main(String[] args) {
                 
                 Utilities3.dodajGatunki();
+                Gatunek gg=new Gatunek();
+                gg=Utilities3.dajGatunek("Komedia");
+                System.out.println(gg.getNazwa());
+                
                 
                 EntityManager em = Utils.getEntityManager();
 
