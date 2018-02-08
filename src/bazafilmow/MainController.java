@@ -20,7 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
+import javax.persistence.*;
 /**
  * FXML Controller class
  *
@@ -30,6 +30,8 @@ public class MainController implements Initializable {
 
     @FXML
     private Button  newMovie;
+    @FXML
+    private Button SzukajAktora;
     
     /**
      * Initializes the controller class.
@@ -52,5 +54,19 @@ public class MainController implements Initializable {
 	                app_stage.show();  
 	            	            
 	    }    
+
+    @FXML
+    private void GoSzukaj(ActionEvent event) throws IOException {
+           
+        
+            System.out.println("You clicked me!");
+	        Parent movie_parent = FXMLLoader.load(getClass().getResource("SearchingTest1.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();
+    }
     
 }
