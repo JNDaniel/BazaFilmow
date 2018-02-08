@@ -12,8 +12,11 @@ import bazafilmow.model.Kraj;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeSet;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -99,6 +102,8 @@ public class NEWController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        Utilities3.dodajGatunki();
         
         ObservableList<String> list = FXCollections.observableArrayList();
         ObservableList<String> list2 = FXCollections.observableArrayList();
@@ -191,12 +196,22 @@ public class NEWController implements Initializable {
                  
                 float BoxOffice = Float.parseFloat(Money.getText());
                 f.setBoxOffice(BoxOffice);
+                
+                 Set<Gatunek> gg=dodanieGatunkowDoFilmu();
+                 if(gg.isEmpty()==false){
+                 f.setGatunki(gg);
+                 
+                 }
+                
 	        
                 em.persist(f);             
                 
                 em.getTransaction().commit();
 
 		em.close();  
+                
+                
+               
                 
                 Parent movie_parent = FXMLLoader.load(getClass().getResource("RootLayout.fxml"));
 	        Scene movie_scene = new Scene(movie_parent);
@@ -245,63 +260,62 @@ public class NEWController implements Initializable {
             
             //zakładam że sam film został juz utworzony i jest w bazie
             
-            private void dodanieGatunkowDoFilmu(Film film1){
+            private Set<Gatunek> dodanieGatunkowDoFilmu(){
                 
                 Gatunek g = new Gatunek();
                 
-                 EntityManager em = Utils.getEntityManager();
-                 em.getTransaction().begin();
+                 Set<Gatunek> SetG = new HashSet<Gatunek>();
             
             
-                if(Obyczajowy.isSelected()){
+                if(Obyczajowy.isSelected()==true){
                 g=Utilities3.dajGatunek("Obyczajowy");
-                film1.addGatunek(g);
+                SetG.add(g);
+                
                 }
-                 if(Komedia.isSelected()){
-                g=Utilities3.dajGatunek("Komedia");
-                film1.addGatunek(g);
+                 if(Komedia.isSelected()==true){
+                Gatunek g1=Utilities3.dajGatunek("Komedia");
+                System.out.println(g1.getNazwa());
+                  SetG.add(g1);
                 }
                  
-                  if(Akcji.isSelected()){
+                  if(Akcji.isSelected()==true){
                 g=Utilities3.dajGatunek("Akcji");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                   
-                if(Sensacyjny.isSelected()){
+                if(Sensacyjny.isSelected()==true){
                 g=Utilities3.dajGatunek("Sensacyjny");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Horror.isSelected()){
+                if(Horror.isSelected()==true){
                 g=Utilities3.dajGatunek("Horror");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Animowany.isSelected()){
+                if(Animowany.isSelected()==true){
                 g=Utilities3.dajGatunek("Animowany");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Dramat.isSelected()){
+                if(Dramat.isSelected()==true){
                 g=Utilities3.dajGatunek("Dramat");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Thriller.isSelected()){
+                if(Thriller.isSelected()==true){
                 g=Utilities3.dajGatunek("Thriller");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
                 
-                if(Fantasy.isSelected()){
+                if(Fantasy.isSelected()==true){
                 g=Utilities3.dajGatunek("Fantasy");
-                film1.addGatunek(g);
+                  SetG.add(g);
                 }
             
             
+            return SetG;
             
-            
-                em.getTransaction().commit();
-                em.close();  
             }
             
 }

@@ -74,14 +74,22 @@ public class Utilities3 {
     public static Gatunek dajGatunek(String szukanaNazwa){
     
     List<Gatunek> Gatunki;
+    Gatunek G1=null;
+    
     
       EntityManager em = Utils.getEntityManager();
      
       Gatunki=em.createNamedQuery("Gatunek.findByNazwa").setParameter("nazwa", szukanaNazwa).getResultList();
    
     
+    if(Gatunki.isEmpty()==false){
+    G1=Gatunki.get(0);
+    return G1;
+    }
+    else{
+    return G1;
+    }
     
-    return Gatunki.get(0);
     }
     
     
