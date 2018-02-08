@@ -33,6 +33,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -95,8 +96,21 @@ public class NEWController implements Initializable {
     
     @FXML
     private RadioButton Fantasy;
-     
     
+    @FXML
+    private RadioButton Sci;
+        
+    @FXML
+    private RadioButton Dokument;
+            
+    @FXML
+    private RadioButton Przygodowy;
+             
+    
+    @FXML
+    private Label NazwaKraju;
+    
+     
     @FXML
     private ListView ViewAktorzy;
     
@@ -232,6 +246,11 @@ public class NEWController implements Initializable {
                 
                 Film f = new Film();
                 boolean flag =false;
+                
+                
+                dodanieGatunkowDoFilmu(f);
+                
+                System.out.println(f.getGatunki());
                 
                // f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
                // em.persist(f);
@@ -422,8 +441,21 @@ public class NEWController implements Initializable {
                 film1.addGatunek(g);
                 }
             
+                if(Sci.isSelected()){
+                g=Utilities3.dajGatunek("Sci-Fi");
+                film1.addGatunek(g);
+                }
             
-            
+                if(Dokument.isSelected()){
+                g=Utilities3.dajGatunek("Dokumentalny");
+                film1.addGatunek(g);
+                }
+                
+                if(Przygodowy.isSelected()){
+                g=Utilities3.dajGatunek("Przygodowy");
+                film1.addGatunek(g);
+                }
+                
             
                 em.getTransaction().commit();
                 em.close();  
