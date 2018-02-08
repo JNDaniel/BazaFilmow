@@ -117,5 +117,14 @@ public class MainController implements Initializable {
 	                app_stage.show();  
 	            	            
 	    } 
-    
+            @FXML
+            private void GoSzukaj(ActionEvent event) throws IOException{
+                
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SearchingTest1.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Szukanie aktora");
+                stage.setScene(new Scene(root1));  
+                stage.show();
+            }
 }

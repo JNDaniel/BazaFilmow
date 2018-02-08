@@ -176,11 +176,11 @@ private BorderPane RootLayout;
 
                
                 
-                System.out.println(f.getTytul()+" "+f.getAktorzy());
-                System.out.println(f2.getTytul()+" "+f2.getAktorzy());
+                //System.out.println(f.getTytul()+" "+f.getAktorzy());
+                //System.out.println(f2.getTytul()+" "+f2.getAktorzy());
                 
 
-                System.out.println(aktor1.getImie()+" "+aktor1.getFilmy());
+                //System.out.println(aktor1.getImie()+" "+aktor1.getFilmy());
                 
                 
 

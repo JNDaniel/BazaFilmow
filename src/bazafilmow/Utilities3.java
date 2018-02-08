@@ -36,7 +36,11 @@ public class Utilities3 {
      Gatunek g7 = new Gatunek();
      Gatunek g8 = new Gatunek();
      
+     Gatunek g9 = new Gatunek();
+     Gatunek g10 = new Gatunek();
+     Gatunek g11 = new Gatunek();
      
+ 
      
      g.setNazwa("Komedia");
      g1.setNazwa("Obyczajowy");
@@ -50,6 +54,10 @@ public class Utilities3 {
      g7.setNazwa("Thriller");
      g8.setNazwa("Fantasy");
      
+     g9.setNazwa("Sci-Fi");
+     g10.setNazwa("Dokumentalny");
+     g11.setNazwa("Przygodowy");     
+     
      em.persist(g);
      em.persist(g1);
      em.persist(g2);
@@ -62,7 +70,9 @@ public class Utilities3 {
      em.persist(g7);
      em.persist(g8);
     
-    
+     em.persist(g9);
+     em.persist(g10);
+     em.persist(g11);
     
       em.getTransaction().commit();
 
