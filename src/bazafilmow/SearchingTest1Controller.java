@@ -64,7 +64,7 @@ public class SearchingTest1Controller implements Initializable {
         
          
          items =FXCollections.observableArrayList();
-         Wynik=Utilities.WyszukajAktoraPoStringuBezPowtorzen(s);
+         Wynik=Utilities.WyszukajAktoraPoStringuBezPowtorzenAlpha(s);
         
         String g;
          

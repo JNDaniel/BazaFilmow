@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane id="BorderPane" prefHeight="500.0" prefWidth="600.0" style="-fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bazafilmow.MainController">
    <center>
@@ -42,6 +40,9 @@
          </BorderPane.margin>
       </VBox>
    </center>
+   <left>
+      <Button id="Sz1" fx:id="SzukajAktora" mnemonicParsing="false" onAction="#GoSzukaj" prefHeight="31.0" prefWidth="64.0" text="SzukajAktora" BorderPane.alignment="CENTER" />
+   </left>
    <top>
       <Button fx:id="Muzyka" mnemonicParsing="false" onAction="#handleMusic" prefHeight="42.0" prefWidth="105.0" text="Music" BorderPane.alignment="BOTTOM_LEFT">
          <BorderPane.margin>
