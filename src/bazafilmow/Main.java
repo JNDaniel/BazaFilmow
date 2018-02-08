@@ -64,7 +64,7 @@ private BorderPane RootLayout;
 
 		em.getTransaction().begin();
                 loadKraje();
-                
+        
                 Film f = new Film();
                 Film f2 = new Film();
                 Film f3 = new Film();
