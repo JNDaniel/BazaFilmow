@@ -49,6 +49,8 @@ private BorderPane RootLayout;
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 
+                
+                
 	} catch(Exception e) {
                 e.printStackTrace();
 	}
@@ -59,15 +61,15 @@ private BorderPane RootLayout;
     public static void main(String[] args) {
                 
                 Utilities3.dodajGatunki();
-                Gatunek gg=new Gatunek();
-                gg=Utilities3.dajGatunek("Komedia");
-                System.out.println(gg.getNazwa());
+               //Gatunek gg=new Gatunek();
+               //gg=Utilities3.dajGatunek("Komedia");
+             //  System.out.println(gg.getNazwa());
                 
                 
                 EntityManager em = Utils.getEntityManager();
 
 		em.getTransaction().begin();
-                loadKraje();
+                Utils.loadKraje();
         
                 Film f = new Film();
                 Film f2 = new Film();
@@ -76,6 +78,15 @@ private BorderPane RootLayout;
                 f.setTytul("Szybcy");
                 f2.setTytul("Szybsi");
                 f3.setTytul("Najszybsi");
+                
+                short rok = 2008;
+                short rok2 = 1995;
+                
+                f.setRokProd(rok);
+                f2.setRokProd(rok2);
+                
+                
+                
                 
                 //Kraj x = new Kraj();
                 //x.setNazwa("Polska");
@@ -102,10 +113,14 @@ private BorderPane RootLayout;
                   Aktor aktor1000 = new Aktor();
                 aktor1000.setImie("Dominik");
                 aktor1000.setNazwisko("Redzynia");
+                  Aktor major = new Aktor();
+                major.setImie("Major");
+                major.setNazwisko("Kononowicz");
                 
                 em.persist(aktor10);
                 em.persist(aktor100);
                 em.persist(aktor1000);
+                em.persist(major);
                 //
                 
                 
