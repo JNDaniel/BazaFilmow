@@ -260,10 +260,7 @@ public class NEWController implements Initializable {
 	        
                 em.persist(f);             
 
-                
-                dodanieGatunkowDoFilmu(f);
-                
-                System.out.println(f.getGatunki());
+              
                 
                 
                // f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());

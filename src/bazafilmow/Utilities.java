@@ -194,8 +194,8 @@ return Lista;
       
       //System.out.println(Aktorzy.size());
       for(int i=0;i<Aktorzy.size();i++){
-         
-      if(Aktorzy.get(i).getNazwisko().toLowerCase().contains(Nazwisko)==true){
+        String Test1= Aktorzy.get(i).getNazwisko() +" "+Aktorzy.get(i).getImie();
+      if(Test1.toLowerCase().contains(Nazwisko)==true){
      
        // System.out.println(i); 
        Wynik=SprawdzP(Wynik,Aktorzy.get(i)); 
@@ -220,7 +220,46 @@ return Lista;
  }
  
  
+  public static List<Aktor> WyszukajAktoraPoStringuBezPowtorzenAlphasave(String Nazwisko){
  
+     List<Aktor> Aktorzy;
+      List<Aktor> Wynik = new ArrayList<Aktor>() ;
+     
+      EntityManager em = Utils.getEntityManager();
+     
+      Aktorzy=em.createNamedQuery("Aktor.findAllAlpha").getResultList();
+    
+       Nazwisko=Nazwisko.toLowerCase();
+      
+      
+      //System.out.println(Aktorzy.size());
+      for(int i=0;i<Aktorzy.size();i++){
+         
+      if(Aktorzy.get(i).getNazwisko().toLowerCase().contains(Nazwisko)==true){
+     
+       // System.out.println(i); 
+       Wynik=SprawdzP(Wynik,Aktorzy.get(i)); 
+      // System.out.println(Aktorzy.get(i).getNazwisko());  //testy
+                }
+        }   
+      
+      
+       for(int i=0;i<Aktorzy.size();i++){
+         
+      if(Aktorzy.get(i).getImie().toLowerCase().contains(Nazwisko)==true){
+     
+       // System.out.println(i);   
+       Wynik=SprawdzP(Wynik,Aktorzy.get(i)); 
+       //System.out.println(Aktorzy.get(i).getImie());  //test 2
+                }
+        }  
+      
+     
+    
+     return Wynik;
+ }
+  
+  
  
  public static List<Film> WyszukajFilmPoStringuBezPowtorzen(String nazwaf){
       List<Film> Filmy;
