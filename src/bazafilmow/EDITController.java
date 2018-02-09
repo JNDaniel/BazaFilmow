@@ -5,10 +5,12 @@
  */
 package bazafilmow;
 
+import bazafilmow.model.Aktor;
 import bazafilmow.model.Film;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,6 +46,8 @@ public class EDITController implements Initializable {
     @FXML
     public ListView lista; 
     
+    List<Film> DoEdycji;
+    
     @FXML
     private Button Edytuj;
     
@@ -58,9 +62,21 @@ public class EDITController implements Initializable {
         EntityManager em = Utils.getEntityManager();
                     
         Query queryFilmy = em.createNamedQuery("Film.findAll");
-        Collection filmy = queryFilmy.getResultList();     
-        list.addAll(filmy);
+        List<Film> filmy = queryFilmy.getResultList();     
+       // list.addAll(filmy);
+        //lista.setItems(list);
+        
+        
+        String g;
+        
+        for(int i=0;i<filmy.size();i++){
+                 
+        g = filmy.get(i).getTytul();
+        list.add(g);
+         
+         }
         lista.setItems(list);
+        DoEdycji=filmy;
         
            
     }    
@@ -70,9 +86,9 @@ public class EDITController implements Initializable {
     @FXML 
     public void handleMouseClick(MouseEvent arg0){
         // System.out.println("clicked on " + lista.getSelectionModel().getSelectedItem());
-        Film o = new Film();
-        o = (Film) lista.getSelectionModel().getSelectedItem();        
-        System.out.println(o.getTytul());
+        //Film o = new Film();
+       // o = (Film) lista.getSelectionModel().getSelectedItem();        
+       // System.out.println(o.getTytul());
 
     
 }
@@ -80,28 +96,39 @@ public class EDITController implements Initializable {
     @FXML
     private void handleEdytujButton(ActionEvent event) throws IOException{
         
-        Film value = (Film) lista.getSelectionModel().getSelectedItem();
+        //Film value = (Film) lista.getSelectionModel().getSelectedItem();
         
-        String tytul = value.getTytul();
-        short RokProd = value.getRokProd();
+        int i= lista.getSelectionModel().getSelectedIndex();
+        if(i!=-1){
+               
+        Film a = DoEdycji.get(i);
+        EdycjaFilmuController.DajFilm(a);
+        String tytul = a.getTytul();
+        short RokProd = a.getRokProd();
         String Rok = String.valueOf(RokProd);
-             
-        if(value != null){
+        
+        }
+
+        
+        
+        
+        //if(value != null){
+            
+        
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EdycjaFilmu.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
              
-            EdycjaFilmuController display = fxmlLoader.getController();
-            
-            display.setText(tytul,Rok);
+            //EdycjaFilmuController display = fxmlLoader.getController();
+           // display.setText(tytul,Rok);
             
             Stage stage = new Stage();
             stage.setTitle("Edycja");
             stage.setScene(new Scene(root1));  
             stage.show();            
             
-            System.out.println(value.getTytul());
+           // System.out.println(value.getRokProd());
   
-        }
+        //}
 
         }
     

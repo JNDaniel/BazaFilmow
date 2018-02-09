@@ -5,6 +5,8 @@
  */
 package bazafilmow;
 
+import static bazafilmow.EditAktorController.b;
+import bazafilmow.model.Aktor;
 import bazafilmow.model.Film;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,13 +28,13 @@ public class EdycjaFilmuController implements Initializable {
 
     
     @FXML
-    public TextField Tytul;
+    private TextField Tytul;
     
     @FXML
-    public TextField Rok;
+    private TextField Rok;
     
     @FXML
-    public TextField Money;
+    private TextField Money;
     
     @FXML
     private ComboBox WyborKraju;
@@ -83,6 +85,7 @@ public class EdycjaFilmuController implements Initializable {
     @FXML
     private Button RemoveRe;
     
+    static Film b;
     
     /**
      * Initializes the controller class.
@@ -92,7 +95,7 @@ public class EdycjaFilmuController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        Tytul.setText(b.getTytul());
     
     }
 
@@ -103,6 +106,10 @@ public class EdycjaFilmuController implements Initializable {
         this.Rok.setText(Rok);
         
     } 
+    public static void DajFilm(Film a){
+        b=a;
+        System.out.println(b.getTytul());
+    }
     
     
     
