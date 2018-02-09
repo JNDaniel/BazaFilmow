@@ -49,7 +49,7 @@ public class EDITController implements Initializable {
     
     @FXML 
     private Button Usun;
-    
+          
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -82,14 +82,27 @@ public class EDITController implements Initializable {
         
         Film value = (Film) lista.getSelectionModel().getSelectedItem();
         
+        String tytul = value.getTytul();
+        short RokProd = value.getRokProd();
+        String Rok = String.valueOf(RokProd);
+             
         if(value != null){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EdycjaFilmu.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+             
+            EdycjaFilmuController display = fxmlLoader.getController();
+            
+            display.setText(tytul,Rok);
+            
             Stage stage = new Stage();
             stage.setTitle("Edycja");
             stage.setScene(new Scene(root1));  
-            stage.show();
+            stage.show();            
+            
+            System.out.println(value.getTytul());
+  
         }
+
         }
     
     @FXML

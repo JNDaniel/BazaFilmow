@@ -6,17 +6,25 @@
 package bazafilmow;
 
 import bazafilmow.model.Aktor;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -31,8 +39,12 @@ public class SearchingTest1Controller implements Initializable {
     @FXML
     private ListView<String> ListView1;
 
-    
+     List<Aktor> DoEdycji ;//lista przekazywana do edycji
      ObservableList<String> items;
+    @FXML
+    private Button cofnij1;
+    @FXML
+    private Button Edytuj1;
     /**
      * Initializes the controller class.
      */
@@ -42,6 +54,10 @@ public class SearchingTest1Controller implements Initializable {
         ObservableList<String> items =FXCollections.observableArrayList();
         ListView1.setItems(items);
         Wyszukaj();
+        
+        
+        
+        
         
         // TODO
     }    
@@ -78,7 +94,45 @@ public class SearchingTest1Controller implements Initializable {
          
          }
         ListView1.setItems(items);
+        DoEdycji=Wynik;
     
     }
+
+    @FXML
+    private void CofnijMnie(ActionEvent event) throws IOException {
+            Parent movie_parent = FXMLLoader.load(getClass().getResource("RootLayout.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();
+    }
+
+    @FXML
+    private void GoEdytuj(ActionEvent event) throws IOException {
+        int i= ListView1.getSelectionModel().getSelectedIndex();
+        if(i!=-1){
+        
+            
+        Aktor a = DoEdycji.get(i);
+        EditAktorController.DewajAktora(a);
+        
+        
+        
+                    Parent movie_parent = FXMLLoader.load(getClass().getResource("EditAktor.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();
+        
+        
+        
+        }
+    }
+    
+    
     
 }

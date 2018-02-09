@@ -26,13 +26,13 @@ public class EdycjaFilmuController implements Initializable {
 
     
     @FXML
-    private TextField Tytul;
+    public TextField Tytul;
     
     @FXML
-    private TextField Rok;
+    public TextField Rok;
     
     @FXML
-    private TextField Money;
+    public TextField Money;
     
     @FXML
     private ComboBox WyborKraju;
@@ -93,21 +93,17 @@ public class EdycjaFilmuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-    EntityManager em = Utils.getEntityManager();
+    
+    }
 
-    em.getTransaction().begin(); 
+
+    public void setText(String Tytul,String Rok){
+        
+        this.Tytul.setText(Tytul);
+        this.Rok.setText(Rok);
+        
+    } 
     
-    Film value = (Film) controller.lista.getSelectionModel().getSelectedItem();
     
-    Tytul.setText(value.getTytul());
-    
-    short RokProd = value.getRokProd();
- 
-    Rok.setText(String.valueOf(RokProd));
-    
-    em.getTransaction().commit();
-    em.close();
-    
-    }    
     
 }
