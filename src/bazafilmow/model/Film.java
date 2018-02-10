@@ -275,7 +275,7 @@ public class Film implements Serializable {
     
     @Override
     public String toString() {
-        return "Film{" + "tytul=" + tytul + ", rokProd=" + rokProd + ", boxOffice=" + boxOffice + ", jezyk=" + jezyk + ", filmId=" + filmId + '}';
+        return this.tytul+", "+this.rokProd+", "+this.gatunki;
     }
 
     

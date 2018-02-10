@@ -174,7 +174,7 @@ public class Aktor implements Serializable {
 
     @Override
     public String toString() {
-        return "Aktor{" + "aktorId=" + aktorId + ", imie=" + imie + ", nazwisko=" + nazwisko + ", narodowosc=" + narodowosc + ", dataUrodzenia=" + dataUrodzenia + '}';
+        return this.imie+" "+this.nazwisko;
     }
 
 
