@@ -5,11 +5,12 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bazafilmow.SearchingTest1Controller">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bazafilmow.SearchingTest1Controller">
    <children>
-      <TextArea fx:id="TextA1" layoutX="25.0" layoutY="22.0" onKeyReleased="#WyszukajSzybko" prefHeight="57.0" prefWidth="754.0" />
-      <ListView fx:id="ListView1" layoutX="25.0" layoutY="102.0" prefHeight="487.0" prefWidth="754.0" />
-      <Button fx:id="cofnij1" layoutX="25.0" layoutY="605.0" mnemonicParsing="false" onAction="#CofnijMnie" prefHeight="31.0" prefWidth="99.0" text="Cofnij" />
-      <Button fx:id="Edytuj1" layoutX="668.0" layoutY="605.0" mnemonicParsing="false" onAction="#GoEdytuj" prefHeight="31.0" prefWidth="107.0" text="Edytuj" />
+      <TextArea fx:id="TextA1" layoutX="25.0" layoutY="22.0" onKeyReleased="#WyszukajSzybko" prefHeight="45.0" prefWidth="480.0" />
+      <ListView fx:id="ListView1" layoutX="25.0" layoutY="102.0" prefHeight="278.0" prefWidth="480.0" />
+      <Button fx:id="cofnij1" layoutX="629.0" layoutY="349.0" mnemonicParsing="false" onAction="#CofnijMnie" prefHeight="31.0" prefWidth="99.0" text="Cofnij" />
+      <Button fx:id="Edytuj1" layoutX="625.0" layoutY="102.0" mnemonicParsing="false" onAction="#GoEdytuj" prefHeight="31.0" prefWidth="107.0" text="Edytuj" />
+      <Button fx:id="UsunButton" layoutX="629.0" layoutY="210.0" mnemonicParsing="false" onAction="#UsunTO" prefHeight="31.0" prefWidth="99.0" text="Usuń" />
    </children>
 </AnchorPane>

@@ -25,6 +25,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javax.persistence.EntityManager;
 
 /**
  * FXML Controller class
@@ -45,6 +46,8 @@ public class SearchingTest1Controller implements Initializable {
     private Button cofnij1;
     @FXML
     private Button Edytuj1;
+    @FXML
+    private Button UsunButton;
     /**
      * Initializes the controller class.
      */
@@ -131,6 +134,34 @@ public class SearchingTest1Controller implements Initializable {
         
         
         }
+    }
+
+    @FXML
+    private void UsunTO(ActionEvent event) {
+        int i= ListView1.getSelectionModel().getSelectedIndex();
+        if(i!=-1){
+          Aktor a = DoEdycji.get(i);
+          
+           EntityManager em = Utils.getEntityManager();
+           
+           
+           
+           em.getTransaction().begin();
+           
+           if (!em.contains(a)) {
+            a = em.merge(a);
+                }
+           
+           
+           em.remove(a);
+          
+               em.getTransaction().commit();
+
+                em.close();  
+        
+        }
+        Wyszukaj();
+        
     }
     
     
