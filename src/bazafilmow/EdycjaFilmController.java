@@ -353,6 +353,7 @@ public class EdycjaFilmController implements Initializable {
                 Stage stage = (Stage) CancelButton.getScene().getWindow();
                 stage.close();
                 
+                
                 }
                 
                 
