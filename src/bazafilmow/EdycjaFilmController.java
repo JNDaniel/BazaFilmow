@@ -260,7 +260,7 @@ public class EdycjaFilmController implements Initializable {
                 System.out.println(a.getGatunki());
                 
                 
-               // f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
+                a.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
                // em.persist(f);
                 
                 if (Tytul.getText() == null || Tytul.getText().trim().isEmpty()) {
