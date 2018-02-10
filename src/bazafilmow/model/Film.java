@@ -60,7 +60,6 @@ public class Film implements Serializable {
     @Column(name = "film_id")
     private Integer filmId;
     @ManyToMany(cascade = { 
-        CascadeType.PERSIST, 
         CascadeType.MERGE
     })
     @JoinTable(name = "film_kraj",
@@ -256,7 +255,10 @@ public class Film implements Serializable {
     }
 
     public void setGatunki(Set<Gatunek> gatunki) {
-        this.gatunki = gatunki;
+        for(Gatunek g : gatunki)
+        {
+            this.addGatunek(g);
+        }
     }
     
     public void addGatunek(Gatunek g)
