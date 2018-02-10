@@ -301,8 +301,7 @@ public class EdycjaFilmController implements Initializable {
                     
                 }
                 
-                if (Money.getText() == null || Money.getText().trim().isEmpty() || "NULL".equals(Money.getText())){ 
-                    
+                if (Money.getText() == null || Money.getText().trim().isEmpty() || "BRAK DANYCH".equals(Money.getText())){ 
                      Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("NULL ERROR");
                     alert.setHeaderText("BoxOffice nie może być NULL");

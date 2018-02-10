@@ -122,6 +122,10 @@ public class EDITController implements Initializable {
         float BoxOffice = a.getBoxOffice();
         money = String.valueOf(BoxOffice);
         }
+        else
+        {
+            money = "BRAK DANYCH";
+        }
         
         
         if(a.getJezyk() != null){   
@@ -131,7 +135,7 @@ public class EDITController implements Initializable {
         }
         else
         {
-            kraj = "BRAK";
+            kraj = "BRAK DANYCH";
         }
        
          Set<Gatunek> SetGatunki;

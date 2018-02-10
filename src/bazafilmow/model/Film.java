@@ -87,10 +87,7 @@ public class Film implements Serializable {
     )
     Set<Aktor> aktorzy = new HashSet<>();
     
-    @ManyToMany(cascade = { 
-        CascadeType.PERSIST, 
-        CascadeType.MERGE
-    })
+    @ManyToMany
     @JoinTable(name = "film_gatunek",
         joinColumns = @JoinColumn(name = "film_id"),
         inverseJoinColumns = @JoinColumn(name = "gatunek_id")
