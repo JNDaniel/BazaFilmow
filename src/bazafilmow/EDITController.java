@@ -105,7 +105,6 @@ public class EDITController implements Initializable {
        // EdycjaFilmController.DajFilm(a);
         
        
-       
         String tytul = a.getTytul();
         String rok = null;
         String money = null;
@@ -115,27 +114,22 @@ public class EDITController implements Initializable {
             
         short RokProd = a.getRokProd();
         rok = String.valueOf(RokProd);
-        }
-            
+        }  
         if(a.getBoxOffice() != null){
             
         float BoxOffice = a.getBoxOffice();
         money = String.valueOf(BoxOffice);
         }
-        else
-        {
-            money = "BRAK DANYCH";
-        }
-        
-        
-        if(a.getJezyk() != null){   
-        Object[] temp = a.getKraje().toArray();
-        kraj = temp[0].toString();       //FIXME:   BARDZO ROBOCZA WERSJA w naszej bazie Kraji dla filmu moze byc wiele(Set) natomiast jezyk jeden ktory jest Stringiem  
-        //w tym miejscu ustawiales kraj = jezyk a jezyk nigdy nie byl ustawiany dlatego dawalo null, 
+
+           
+        if(a.getKraje().isEmpty()){            
+        kraj = null;
         }
         else
         {
-            kraj = "BRAK DANYCH";
+            System.out.println("Kraje edytowanego filmu "+a.getKraje());
+            kraj = a.getKraje().toArray()[0].toString(); //FIXME: Robocza wersja, krajow moze byc duzo nizej metoda addKraj wybranie z listy kraju tylko dodaje do istniejacych
+            //Label w oknie edycji bedzie wyswietlal tylko pierwszy dodany
         }
        
          Set<Gatunek> SetGatunki;
