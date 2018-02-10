@@ -205,8 +205,10 @@ return Lista;
       
       
        for(int i=0;i<Aktorzy.size();i++){
-         
-      if(Aktorzy.get(i).getImie().toLowerCase().contains(Nazwisko)==true){
+        
+           
+         String Test2= Aktorzy.get(i).getImie() +" "+Aktorzy.get(i).getNazwisko();   
+      if(Test2.toLowerCase().contains(Nazwisko)==true){
      
        // System.out.println(i);   
        Wynik=SprawdzP(Wynik,Aktorzy.get(i)); 
