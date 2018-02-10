@@ -48,6 +48,8 @@ public class SearchingTest1Controller implements Initializable {
     private Button Edytuj1;
     @FXML
     private Button UsunButton;
+    @FXML
+    private Button NowyAktor;
     /**
      * Initializes the controller class.
      */
@@ -163,6 +165,18 @@ public class SearchingTest1Controller implements Initializable {
         }
         Wyszukaj();
         
+    }
+
+    @FXML
+    private void GoNowyAktor(ActionEvent event) throws IOException {
+                        
+                       Parent movie_parent = FXMLLoader.load(getClass().getResource("TworzenieAktora.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();
     }
     
     
