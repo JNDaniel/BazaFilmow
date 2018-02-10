@@ -130,7 +130,6 @@ public class Aktor implements Serializable {
         f.getAktorzy().remove(this);
         this.getFilmy().remove(f);
     }
-    //TODO: implementacja preremove 
     @Override
     public int hashCode() {
         int hash = 5;

@@ -258,24 +258,29 @@ public class NEWController implements Initializable {
                 
                 
                 Film f = new Film();
+                
                 boolean flag =false;
                 
 
                 
                  Set<Gatunek> gg=dodanieGatunkowDoFilmu(f);
-                 if(gg.isEmpty()==false){
-                 f.setGatunki(gg);
-                 
+                 if(gg.isEmpty()==false)
+                 {
+                    for(Gatunek g : gg)
+                    {
+                        f.addGatunek(g);
+                    }
                  }
                 
 	        
-                em.persist(f);             
+                //em.persist(f);       //to dopiero na koncu      
 
               
                 
                 
-               // f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
-               // em.persist(f);
+                f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
+                System.out.println("Wybrales kraj: "+WyborKraju.getSelectionModel().getSelectedItem());
+                System.out.println("Kraje nowego filmu "+f.getKraje());
                 
                 if (Tytul.getText() == null || Tytul.getText().trim().isEmpty()) {
                     
@@ -291,7 +296,6 @@ public class NEWController implements Initializable {
                 else{
                     
                     f.setTytul(Tytul.getText());
-                    em.persist(f); 
                     flag = true;       
                     
                 }
@@ -309,8 +313,7 @@ public class NEWController implements Initializable {
                 else{
                     
                      short RokValue = Short.parseShort(Rok.getText()); //-short
-                    f.setRokProd(RokValue);
-                    em.persist(f); 
+                    f.setRokProd(RokValue); 
                     flag = true;
                     
                 }
@@ -329,7 +332,6 @@ public class NEWController implements Initializable {
                     
                     float BoxOffice = Float.parseFloat(Money.getText()); //-float
                     f.setBoxOffice(BoxOffice);
-                    em.persist(f);
                     flag = true;
                                   
                 }
@@ -341,9 +343,8 @@ public class NEWController implements Initializable {
                     for(int i=0;i<ViewAktorzy.getItems().size();i++){
                        
                        f.addAktor((Aktor) ViewAktorzy.getItems().get(i));
-                    }
-                em.persist(f);                         
-                System.out.println(f.getAktorzy());
+                    }                         
+                System.out.println("Aktorzy :"+f.getAktorzy());
                 
                 
                     for(int i=0;i<ViewRezyserzy.getItems().size();i++){
@@ -352,7 +353,7 @@ public class NEWController implements Initializable {
                     }
                     
                 em.persist(f);
-                System.out.println(f.getRezyserzy());
+                System.out.println("Rezyserzy "+f.getRezyserzy());
                 
                 
                 
