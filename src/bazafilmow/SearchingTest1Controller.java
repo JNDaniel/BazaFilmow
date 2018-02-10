@@ -114,6 +114,7 @@ public class SearchingTest1Controller implements Initializable {
 
     @FXML
     private void GoEdytuj(ActionEvent event) throws IOException {
+        
         int i= ListView1.getSelectionModel().getSelectedIndex();
         if(i!=-1){
         
