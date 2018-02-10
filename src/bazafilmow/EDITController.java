@@ -124,8 +124,14 @@ public class EDITController implements Initializable {
         }
         
         
-        if(a.getJezyk() != null){            
-        kraj = a.getJezyk();
+        if(a.getJezyk() != null){   
+        Object[] temp = a.getKraje().toArray();
+        kraj = temp[0].toString();       //FIXME:   BARDZO ROBOCZA WERSJA w naszej bazie Kraji dla filmu moze byc wiele(Set) natomiast jezyk jeden ktory jest Stringiem  
+        //w tym miejscu ustawiales kraj = jezyk a jezyk nigdy nie byl ustawiany dlatego dawalo null, 
+        }
+        else
+        {
+            kraj = "BRAK";
         }
        
          Set<Gatunek> SetGatunki;

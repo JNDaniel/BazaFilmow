@@ -5,7 +5,6 @@
  */
 package bazafilmow;
 
-import static bazafilmow.EDITController.a;
 import static bazafilmow.Utils.em;
 import bazafilmow.model.Aktor;
 import bazafilmow.model.Film;
@@ -46,7 +45,7 @@ import javax.persistence.Query;
  */
 public class EdycjaFilmController implements Initializable {
 
-    
+    Film a = em.merge(EDITController.a); 
     @FXML
     private TextField Tytul;
     
