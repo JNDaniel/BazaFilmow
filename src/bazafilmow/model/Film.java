@@ -60,7 +60,6 @@ public class Film implements Serializable {
     @Column(name = "film_id")
     private Integer filmId;
     @ManyToMany(cascade = { 
-        CascadeType.PERSIST, 
         CascadeType.MERGE
     })
     @JoinTable(name = "film_kraj",
@@ -88,10 +87,7 @@ public class Film implements Serializable {
     )
     Set<Aktor> aktorzy = new HashSet<>();
     
-    @ManyToMany(cascade = { 
-        CascadeType.PERSIST, 
-        CascadeType.MERGE
-    })
+    @ManyToMany
     @JoinTable(name = "film_gatunek",
         joinColumns = @JoinColumn(name = "film_id"),
         inverseJoinColumns = @JoinColumn(name = "gatunek_id")
@@ -256,7 +252,10 @@ public class Film implements Serializable {
     }
 
     public void setGatunki(Set<Gatunek> gatunki) {
-        this.gatunki = gatunki;
+        for(Gatunek g : gatunki)
+        {
+            this.addGatunek(g);
+        }
     }
     
     public void addGatunek(Gatunek g)
@@ -273,7 +272,7 @@ public class Film implements Serializable {
     
     @Override
     public String toString() {
-        return "Film{" + "tytul=" + tytul + ", rokProd=" + rokProd + ", boxOffice=" + boxOffice + ", jezyk=" + jezyk + ", filmId=" + filmId + '}';
+        return this.tytul+", "+this.rokProd+", "+this.gatunki;
     }
 
     

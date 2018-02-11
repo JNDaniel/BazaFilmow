@@ -105,7 +105,6 @@ public class EDITController implements Initializable {
        // EdycjaFilmController.DajFilm(a);
         
        
-       
         String tytul = a.getTytul();
         String rok = null;
         String money = null;
@@ -115,17 +114,22 @@ public class EDITController implements Initializable {
             
         short RokProd = a.getRokProd();
         rok = String.valueOf(RokProd);
-        }
-            
+        }  
         if(a.getBoxOffice() != null){
             
         float BoxOffice = a.getBoxOffice();
         money = String.valueOf(BoxOffice);
         }
-        
-        
-        if(a.getJezyk() != null){            
-        kraj = a.getJezyk();
+
+           
+        if(a.getKraje().isEmpty()){            
+        kraj = null;
+        }
+        else
+        {
+            System.out.println("Kraje edytowanego filmu "+a.getKraje());
+            kraj = a.getKraje().toArray()[0].toString(); //FIXME: Robocza wersja, krajow moze byc duzo nizej metoda addKraj wybranie z listy kraju tylko dodaje do istniejacych
+            //Label w oknie edycji bedzie wyswietlal tylko pierwszy dodany
         }
        
          Set<Gatunek> SetGatunki;
@@ -137,18 +141,20 @@ public class EDITController implements Initializable {
          Set<Rezyser> SetRezyserzy;
          SetRezyserzy = a.getRezyserzy();
         
+            
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EdycjaFilm.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-             
+            Parent movie_parent = (Parent) fxmlLoader.load();
+            Scene movie_scene = new Scene(movie_parent); 
+            
             EdycjaFilmController display = fxmlLoader.getController();
             display.setText(tytul, rok, money, kraj, SetGatunki, SetAktorzy, SetRezyserzy);
             
- 
-            Stage stage = new Stage();
-            stage.setTitle("Edycja");
-            stage.setScene(new Scene(root1));  
-            stage.show();  
-        
+            Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show(); 
+                            
         
        }   
 

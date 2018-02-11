@@ -170,7 +170,7 @@ public class Rezyser implements Serializable {
 
     @Override
     public String toString() {
-        return "Rezyser{" + "rezyserId=" + rezyserId + ", imie=" + imie + ", nazwisko=" + nazwisko + ", narodowosc=" + narodowosc + ", dataUrodzenia=" + dataUrodzenia + '}';
+        return this.imie+" "+this.nazwisko;
     }
 
     

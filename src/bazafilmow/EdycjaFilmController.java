@@ -5,7 +5,6 @@
  */
 package bazafilmow;
 
-import static bazafilmow.EDITController.a;
 import static bazafilmow.Utils.em;
 import bazafilmow.model.Aktor;
 import bazafilmow.model.Film;
@@ -46,7 +45,7 @@ import javax.persistence.Query;
  */
 public class EdycjaFilmController implements Initializable {
 
-    
+    Film a;
     @FXML
     private TextField Tytul;
     
@@ -104,7 +103,6 @@ public class EdycjaFilmController implements Initializable {
     @FXML
     private Label NazwaKraju;
     
-     
     @FXML
     private ListView ViewAktorzy;
     
@@ -148,6 +146,7 @@ public class EdycjaFilmController implements Initializable {
         
                 
                 EntityManager em = Utils.getEntityManager();
+                a = em.merge(EDITController.a); 
                 
                 
                 Query queryKraj = em.createNamedQuery("Kraj.findAll");
@@ -244,7 +243,6 @@ public class EdycjaFilmController implements Initializable {
                 
                 boolean flag =false;
                 
-
                 
                  Set<Gatunek> gg=dodanieGatunkowDoFilmu(a);
                  if(gg.isEmpty()==false){
@@ -260,8 +258,11 @@ public class EdycjaFilmController implements Initializable {
                 
                 System.out.println(a.getGatunki());
                 
+                if(WyborKraju.getSelectionModel().getSelectedItem() instanceof Kraj)
+                {
+                    a.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
+                }
                 
-               // f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
                // em.persist(f);
                 
                 if (Tytul.getText() == null || Tytul.getText().trim().isEmpty()) {
@@ -302,8 +303,7 @@ public class EdycjaFilmController implements Initializable {
                     
                 }
                 
-                if (Money.getText() == null || Money.getText().trim().isEmpty() || "NULL".equals(Money.getText())){ 
-                    
+                if (Money.getText() == null || Money.getText().trim().isEmpty() || "BRAK DANYCH".equals(Money.getText())){ 
                      Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("NULL ERROR");
                     alert.setHeaderText("BoxOffice nie może być NULL");
@@ -348,10 +348,15 @@ public class EdycjaFilmController implements Initializable {
                 em.getTransaction().commit();
 
 		em.close();
-
-                
-                Stage stage = (Stage) CancelButton.getScene().getWindow();
-                stage.close();
+              
+                Parent movie_parent = FXMLLoader.load(getClass().getResource("EDIT.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);             
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                app_stage.setTitle("Edytuj Film");
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();
                 
                 
                 }

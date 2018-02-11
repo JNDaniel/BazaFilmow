@@ -40,7 +40,6 @@ public class Utils {
         {
             em.persist(k);  
         }
-        //TODO: Kraje do tabeli w kolejnosci alfabetycznej
     }
     
     
