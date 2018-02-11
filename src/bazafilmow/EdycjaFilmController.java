@@ -45,7 +45,7 @@ import javax.persistence.Query;
  */
 public class EdycjaFilmController implements Initializable {
 
-    Film a = em.merge(EDITController.a); 
+    Film a;
     @FXML
     private TextField Tytul;
     
@@ -147,6 +147,7 @@ public class EdycjaFilmController implements Initializable {
         
                 
                 EntityManager em = Utils.getEntityManager();
+                a = em.merge(EDITController.a); 
                 
                 
                 Query queryKraj = em.createNamedQuery("Kraj.findAll");
@@ -259,8 +260,11 @@ public class EdycjaFilmController implements Initializable {
                 
                 System.out.println(a.getGatunki());
                 
+                if(WyborKraju.getSelectionModel().getSelectedItem() instanceof Kraj)
+                {
+                    a.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
+                }
                 
-                a.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
                // em.persist(f);
                 
                 if (Tytul.getText() == null || Tytul.getText().trim().isEmpty()) {
