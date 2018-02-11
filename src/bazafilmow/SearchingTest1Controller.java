@@ -93,7 +93,7 @@ public class SearchingTest1Controller implements Initializable {
              
          
              
-         g=Wynik.get(i).getNazwisko()+" "+Wynik.get(i).getImie();
+         g=Wynik.get(i).getNazwisko()+" "+Wynik.get(i).getImie()+" "+Wynik.get(i).getNarodowosc()+" "+Wynik.get(i).getDataUrodzenia();
          items.add(g);
          
          }
