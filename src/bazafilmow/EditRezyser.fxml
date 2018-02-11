@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="305.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bazafilmow.EditRezyserController">
+   <children>
+      <TextArea fx:id="SIemaaTest" layoutX="162.0" layoutY="14.0" prefHeight="47.0" prefWidth="243.0" />
+      <Button fx:id="ZatwierdzButton" layoutX="47.0" layoutY="252.0" mnemonicParsing="false" onAction="#ZatwierdzButtonHandler" prefHeight="31.0" prefWidth="101.0" text="Ok" />
+      <Button fx:id="CancelButton" layoutX="335.0" layoutY="252.0" mnemonicParsing="false" onAction="#CofajMnie" prefHeight="31.0" prefWidth="101.0" text="Cancel" />
+      <TextArea fx:id="Nazwisko1" layoutX="162.0" layoutY="70.0" prefHeight="48.0" prefWidth="243.0" />
+      <TextArea fx:id="Narodowosc1" layoutX="162.0" layoutY="129.0" prefHeight="48.0" prefWidth="243.0" />
+      <TextArea fx:id="DataUrodzenia1" layoutX="162.0" layoutY="186.0" prefHeight="48.0" prefWidth="243.0" />
+      <Label layoutX="23.0" layoutY="27.0" text="Imie" />
+      <Label layoutX="23.0" layoutY="84.0" text="Nazwisko" />
+      <Label layoutX="23.0" layoutY="143.0" text="Narodowość" />
+      <Label layoutX="23.0" layoutY="200.0" text="Data Urodzenia" />
+   </children>
+</AnchorPane>
