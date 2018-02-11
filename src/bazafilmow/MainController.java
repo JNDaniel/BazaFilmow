@@ -49,6 +49,8 @@ public class MainController implements Initializable {
     final URL resource = getClass().getResource("Nice.mp3");
     final Media media = new Media(resource.toString());
     final MediaPlayer mediaPlayer = new MediaPlayer(media);
+    @FXML
+    private Button EdytujRezysera;
     
     
     /**
@@ -132,4 +134,17 @@ public class MainController implements Initializable {
 	                app_stage.setScene(movie_scene);
 	                app_stage.show();  
             }
+
+    @FXML
+    private void GoSzukajRezysera(ActionEvent event) throws IOException {
+                       System.out.println("You clicked me!");
+	        Parent movie_parent = FXMLLoader.load(getClass().getResource("SzukajRezysera.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);             
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                app_stage.setTitle("Edytuj Rezysera");
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();
+    }
 }
