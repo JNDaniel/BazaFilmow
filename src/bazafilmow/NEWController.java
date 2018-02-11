@@ -169,7 +169,7 @@ public class NEWController implements Initializable {
                 Collection kraje = queryKraj.getResultList();     
                 list.addAll(kraje);
                 WyborKraju.setItems(list);
-
+                
                 Query queryAktorzy = em.createNamedQuery("Aktor.findAll");
                 Collection aktorzy = queryAktorzy.getResultList();     
                 list2.addAll(aktorzy);
