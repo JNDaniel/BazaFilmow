@@ -389,8 +389,15 @@ public class EdycjaFilmController implements Initializable {
             
             @FXML
 	    private void handleCancelButton(ActionEvent event) throws IOException{
-                Stage stage = (Stage) CancelButton.getScene().getWindow();
-                stage.close();
+                
+                Parent movie_parent = FXMLLoader.load(getClass().getResource("EDIT.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);             
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                app_stage.setTitle("Edytuj Film");
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();
             }
             
             

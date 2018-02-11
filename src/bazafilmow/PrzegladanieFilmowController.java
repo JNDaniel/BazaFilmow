@@ -42,22 +42,24 @@ import javax.persistence.Query;
 public class PrzegladanieFilmowController implements Initializable {
 
     @FXML
-    private TextField Szukaj;
+    private TextField szukaj;
     
     @FXML
     private Button Cofnij;
     
     @FXML
     private ListView lista;
+    ObservableList<String> items;
     
     List<Film> DoEdycji;
-    
+        
     static Film f;
     ObservableList<String> list;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+
         
         
         
@@ -71,21 +73,45 @@ public class PrzegladanieFilmowController implements Initializable {
                     
         Query queryFilmy = em.createNamedQuery("Film.findAllAlpha");
         List<Film> filmy = queryFilmy.getResultList();     
-
-        
-        String g;
-        
-        for(int i=0;i<filmy.size();i++){
-                 
-        g = filmy.get(i).getTytul();
-        list.add(g);
-         
-         }
-        lista.setItems(list);
-        DoEdycji=filmy;
-     */   
+=======
+        ObservableList<String> items = FXCollections.observableArrayList();
+        lista.setItems(items);
+        Wyszukaj();
+        */
     }
 
+
+    */
+    void Wyszukaj(){
+         
+        String s = szukaj.getText();
+         List<Film> Wynik ;
+         
+         
+         items =FXCollections.observableArrayList();
+         Wynik=Utilities.WyszukajFilmPoStringuBezPowtorzen(s);
+        
+        String g;
+         
+
+         for(int i=0;i<Wynik.size();i++){
+           
+         g=Wynik.get(i).getTytul();
+         items.add(g);
+         
+         }
+
+        lista.setItems(list);
+        DoEdycji=filmy;
+
+        lista.setItems(items);
+        DoEdycji=Wynik;
+    
+    }
+    
+  */
+    
+    
 @FXML
     private void handleCofnijButton(ActionEvent event) throws IOException{
             
