@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
@@ -52,11 +53,20 @@ public class PrzegladanieFilmowController implements Initializable {
     List<Film> DoEdycji;
     
     static Film f;
+    ObservableList<String> list;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
+        
+        
+        
         ObservableList<String> list = FXCollections.observableArrayList();
+        lista.setItems(list); //dodane
+         Wyszukaj();//ddodane
+        
+         /*
         EntityManager em = Utils.getEntityManager();
                     
         Query queryFilmy = em.createNamedQuery("Film.findAllAlpha");
@@ -73,7 +83,7 @@ public class PrzegladanieFilmowController implements Initializable {
          }
         lista.setItems(list);
         DoEdycji=filmy;
-        
+     */   
     }
 
 @FXML
@@ -151,6 +161,42 @@ public class PrzegladanieFilmowController implements Initializable {
         
         }
         
+    }
+    
+    
+    void Wyszukaj(){
+         
+        String s=Szukaj.getText();
+         List<Film> Wynik ;
+         
+         
+     
+         
+         list =FXCollections.observableArrayList();
+         Wynik=Utilities.WyszukajFilmPoStringuBezPowtorzen(s);
+        
+        String g;
+         
+      
+          //System.out.println(Wynik.size());
+         for(int i=0;i<Wynik.size();i++){
+             
+         
+             
+         g=Wynik.get(i).getTytul();
+         list.add(g);
+         
+         }
+        lista.setItems(list);
+        DoEdycji=Wynik;
+    
+    }
+    
+    
+
+    @FXML
+    private void PrzeglondajFilmy(KeyEvent event) {
+        Wyszukaj();
     }
 
 }
