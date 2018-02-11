@@ -138,7 +138,6 @@ public class EdycjaFilmController implements Initializable {
         
         //Tytul.setText(b.getTytul());
         
-        Utilities3.dodajGatunki();
         
         ObservableList<String> list = FXCollections.observableArrayList();
         ObservableList<String> list2 = FXCollections.observableArrayList();
@@ -303,7 +302,7 @@ public class EdycjaFilmController implements Initializable {
                     
                 }
                 
-                if (Money.getText() == null || Money.getText().trim().isEmpty() || "BRAK DANYCH".equals(Money.getText())){ 
+                if (Money.getText() == null || Money.getText().trim().isEmpty() || "NULL".equals(Money.getText())){ 
                      Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("NULL ERROR");
                     alert.setHeaderText("BoxOffice nie może być NULL");

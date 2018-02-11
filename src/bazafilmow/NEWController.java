@@ -144,7 +144,6 @@ public class NEWController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        Utilities3.dodajGatunki();
         
         ObservableList<String> list = FXCollections.observableArrayList();
         ObservableList<String> list2 = FXCollections.observableArrayList();
