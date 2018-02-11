@@ -124,7 +124,7 @@ public class Kraj implements Serializable,Comparable<Kraj> {
     
     @Override
     public String toString() {
-        return "Kraj{" + "krajId=" + krajId + ", nazwa=" + nazwa + '}';
+        return this.nazwa;
     }
 
     @Override

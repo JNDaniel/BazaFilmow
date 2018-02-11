@@ -5,7 +5,6 @@
  */
 package bazafilmow;
 
-import static bazafilmow.EDITController.a;
 import static bazafilmow.Utils.em;
 import bazafilmow.model.Aktor;
 import bazafilmow.model.Film;
@@ -46,7 +45,7 @@ import javax.persistence.Query;
  */
 public class EdycjaFilmController implements Initializable {
 
-    
+    Film a;
     @FXML
     private TextField Tytul;
     
@@ -147,6 +146,7 @@ public class EdycjaFilmController implements Initializable {
         
                 
                 EntityManager em = Utils.getEntityManager();
+                a = em.merge(EDITController.a); 
                 
                 
                 Query queryKraj = em.createNamedQuery("Kraj.findAll");
@@ -258,8 +258,11 @@ public class EdycjaFilmController implements Initializable {
                 
                 System.out.println(a.getGatunki());
                 
+                if(WyborKraju.getSelectionModel().getSelectedItem() instanceof Kraj)
+                {
+                    a.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
+                }
                 
-               // f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
                // em.persist(f);
                 
                 if (Tytul.getText() == null || Tytul.getText().trim().isEmpty()) {
@@ -300,8 +303,7 @@ public class EdycjaFilmController implements Initializable {
                     
                 }
                 
-                if (Money.getText() == null || Money.getText().trim().isEmpty() || "NULL".equals(Money.getText())){ 
-                    
+                if (Money.getText() == null || Money.getText().trim().isEmpty() || "BRAK DANYCH".equals(Money.getText())){ 
                      Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("NULL ERROR");
                     alert.setHeaderText("BoxOffice nie może być NULL");

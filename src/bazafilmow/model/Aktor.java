@@ -130,7 +130,6 @@ public class Aktor implements Serializable {
         f.getAktorzy().remove(this);
         this.getFilmy().remove(f);
     }
-    //TODO: implementacja preremove 
     @Override
     public int hashCode() {
         int hash = 5;
@@ -174,7 +173,7 @@ public class Aktor implements Serializable {
 
     @Override
     public String toString() {
-        return "Aktor{" + "aktorId=" + aktorId + ", imie=" + imie + ", nazwisko=" + nazwisko + ", narodowosc=" + narodowosc + ", dataUrodzenia=" + dataUrodzenia + '}';
+        return this.imie+" "+this.nazwisko;
     }
 
 

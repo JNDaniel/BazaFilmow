@@ -120,7 +120,9 @@ public class Gatunek implements Serializable {
 
     @Override
     public String toString() {
-        return nazwa;
+
+        return this.nazwa;
+
     }
 
     

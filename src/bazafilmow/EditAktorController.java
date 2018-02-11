@@ -49,7 +49,7 @@ public class EditAktorController implements Initializable {
         Nazwisko1.setText(b.getNazwisko());
         Narodowosc1.setText(b.getNarodowosc());
         DataUrodzenia1.setText(b.getDataUrodzenia());
-        // TODO
+
     }    
     
     public static void DewajAktora(Aktor a){
