@@ -8,6 +8,7 @@ package bazafilmow;
 import bazafilmow.model.Aktor;
 import bazafilmow.model.Film;
 import bazafilmow.model.Gatunek;
+import bazafilmow.model.Kraj;
 import bazafilmow.model.Rezyser;
 import java.io.IOException;
 import java.net.URL;
@@ -127,9 +128,15 @@ public class EDITController implements Initializable {
         }
         else
         {
-            System.out.println("Kraje edytowanego filmu "+a.getKraje());
-            kraj = a.getKraje().toArray()[0].toString(); //FIXME: Robocza wersja, krajow moze byc duzo nizej metoda addKraj wybranie z listy kraju tylko dodaje do istniejacych
-            //Label w oknie edycji bedzie wyswietlal tylko pierwszy dodany
+            System.out.println("Kraje edytowanego filmu "+a.getKraje()); 
+            kraj="";
+            for(Kraj k : a.getKraje()) //wysietlanie w stringu kilku krajow 
+            {
+                kraj += k.toString()+", ";
+            }
+
+//FIXME: Robocza wersja, krajow moze byc duzo nizej metoda addKraj wybranie z listy kraju tylko dodaje do istniejacych
+            
         }
        
          Set<Gatunek> SetGatunki;
