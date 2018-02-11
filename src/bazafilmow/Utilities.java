@@ -221,6 +221,49 @@ return Lista;
      return Wynik;
  }
  
+  //wyszukanie rezysera alfabetycznie uporzadkowane
+    public static List<Rezyser> WyszukajRezyseraPoStringuBezPowtorzenAlpha(String Nazwisko){
+ 
+     List<Rezyser> Aktorzy;
+      List<Rezyser> Wynik = new ArrayList<Rezyser>() ;
+     
+      EntityManager em = Utils.getEntityManager();
+     
+      Aktorzy=em.createNamedQuery("Rezyser.findAllAlpha").getResultList();
+    
+       Nazwisko=Nazwisko.toLowerCase();
+      
+      
+      //System.out.println(Aktorzy.size());
+      for(int i=0;i<Aktorzy.size();i++){
+        String Test1= Aktorzy.get(i).getNazwisko() +" "+Aktorzy.get(i).getImie();
+      if(Test1.toLowerCase().contains(Nazwisko)==true){
+     
+       // System.out.println(i); 
+       Wynik=SprawdzRezysera(Wynik,Aktorzy.get(i)); 
+      // System.out.println(Aktorzy.get(i).getNazwisko());  //testy
+                }
+        }   
+      
+      
+       for(int i=0;i<Aktorzy.size();i++){
+        
+           
+         String Test2= Aktorzy.get(i).getImie() +" "+Aktorzy.get(i).getNazwisko();   
+      if(Test2.toLowerCase().contains(Nazwisko)==true){
+     
+       // System.out.println(i);   
+       Wynik=SprawdzRezysera(Wynik,Aktorzy.get(i)); 
+       //System.out.println(Aktorzy.get(i).getImie());  //test 2
+                }
+        }  
+      
+     
+    
+     return Wynik;
+ }
+  
+  
  
   public static List<Aktor> WyszukajAktoraPoStringuBezPowtorzenAlphasave(String Nazwisko){
  
@@ -269,7 +312,7 @@ return Lista;
      
       EntityManager em = Utils.getEntityManager();
      
-      Filmy=em.createNamedQuery("Film.findAll").getResultList();
+      Filmy=em.createNamedQuery("Film.findAllAlpha").getResultList();
     
        nazwaf=nazwaf.toLowerCase();
       

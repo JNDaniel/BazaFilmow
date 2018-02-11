@@ -6,6 +6,7 @@
 package bazafilmow;
 
 import bazafilmow.model.Aktor;
+import bazafilmow.model.Rezyser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,12 +28,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 
+
 /**
  * FXML Controller class
  *
  * @author Mateusz
  */
-public class SearchingTest1Controller implements Initializable {
+public class SzukajRezyseraController implements Initializable {
 
     
     @FXML
@@ -40,7 +42,7 @@ public class SearchingTest1Controller implements Initializable {
     @FXML
     private ListView<String> ListView1;
 
-     List<Aktor> DoEdycji ;//lista przekazywana do edycji
+     List<Rezyser> DoEdycji ;//lista przekazywana do edycji
      ObservableList<String> items;
     @FXML
     private Button cofnij1;
@@ -77,13 +79,13 @@ public class SearchingTest1Controller implements Initializable {
      void Wyszukaj(){
          
         String s=TextA1.getText();
-         List<Aktor> Wynik ;
+         List<Rezyser> Wynik ;
          
          
      
          
          items =FXCollections.observableArrayList();
-         Wynik=Utilities.WyszukajAktoraPoStringuBezPowtorzenAlpha(s);
+         Wynik=Utilities.WyszukajRezyseraPoStringuBezPowtorzenAlpha(s);
         
         String g;
          
@@ -120,12 +122,12 @@ public class SearchingTest1Controller implements Initializable {
         if(i!=-1){
         
             
-        Aktor a = DoEdycji.get(i);
-        EditAktorController.DewajAktora(a);
+        Rezyser a = DoEdycji.get(i);
+        EditRezyserController.DewajAktora(a);
         
         
         
-                    Parent movie_parent = FXMLLoader.load(getClass().getResource("EditAktor.fxml"));
+                    Parent movie_parent = FXMLLoader.load(getClass().getResource("EditRezyser.fxml"));
 	        Scene movie_scene = new Scene(movie_parent);
 	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	          
@@ -142,7 +144,7 @@ public class SearchingTest1Controller implements Initializable {
     private void UsunTO(ActionEvent event) {
         int i= ListView1.getSelectionModel().getSelectedIndex();
         if(i!=-1){
-          Aktor a = DoEdycji.get(i);
+          Rezyser a = DoEdycji.get(i);
           
            EntityManager em = Utils.getEntityManager();
            
@@ -169,7 +171,7 @@ public class SearchingTest1Controller implements Initializable {
     @FXML
     private void GoNowyAktor(ActionEvent event) throws IOException {
                         
-                       Parent movie_parent = FXMLLoader.load(getClass().getResource("TworzenieAktora.fxml"));
+                       Parent movie_parent = FXMLLoader.load(getClass().getResource("TworzenieRezysera.fxml"));
 	        Scene movie_scene = new Scene(movie_parent);
 	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	          

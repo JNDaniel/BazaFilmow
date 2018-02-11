@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
@@ -53,41 +54,36 @@ public class PrzegladanieFilmowController implements Initializable {
     List<Film> DoEdycji;
         
     static Film f;
+    ObservableList<String> list;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ObservableList<String> items = FXCollections.observableArrayList();
-        lista.setItems(items);
-        Wyszukaj();
+        ObservableList<String> list = FXCollections.observableArrayList();
+        lista.setItems(list); //dodane
+        Wyszukaj();//ddodane
         
-    }
+         /*
+        EntityManager em = Utils.getEntityManager();
+                    
+        Query queryFilmy = em.createNamedQuery("Film.findAllAlpha");
+        List<Film> filmy = queryFilmy.getResultList();     
 
-    
-    void Wyszukaj(){
-         
-        String s = szukaj.getText();
-         List<Film> Wynik ;
-         
-         
-         items =FXCollections.observableArrayList();
-         Wynik=Utilities.WyszukajFilmPoStringuBezPowtorzen(s);
         
         String g;
-         
-      
-          //System.out.println(Wynik.size());
-         for(int i=0;i<Wynik.size();i++){
-           
-         g=Wynik.get(i).getTytul();
-         items.add(g);
+        
+        for(int i=0;i<filmy.size();i++){
+                 
+        g = filmy.get(i).getTytul();
+        list.add(g);
          
          }
-        lista.setItems(items);
-        DoEdycji=Wynik;
-    
+        lista.setItems(list);
+        DoEdycji=filmy;
+     */   
     }
-    
+
+ 
 @FXML
     private void handleCofnijButton(ActionEvent event) throws IOException{
             
@@ -163,6 +159,36 @@ public class PrzegladanieFilmowController implements Initializable {
         
         }
         
+    }
+    
+    
+    void Wyszukaj(){
+         
+        String s=szukaj.getText();
+         List<Film> Wynik ;
+
+         list =FXCollections.observableArrayList();
+         Wynik=Utilities.WyszukajFilmPoStringuBezPowtorzen(s);
+        
+        String g;
+          
+          //System.out.println(Wynik.size());
+         for(int i=0;i<Wynik.size();i++){
+  
+         g=Wynik.get(i).getTytul();
+         list.add(g);
+        
+         }
+        lista.setItems(list);
+        DoEdycji=Wynik;
+    
+    }
+    
+    
+
+    @FXML
+    private void PrzeglondajFilmy(KeyEvent event) {
+        Wyszukaj();
     }
 
 }
