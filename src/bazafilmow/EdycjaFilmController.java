@@ -104,7 +104,6 @@ public class EdycjaFilmController implements Initializable {
     @FXML
     private Label NazwaKraju;
     
-     
     @FXML
     private ListView ViewAktorzy;
     
@@ -244,7 +243,6 @@ public class EdycjaFilmController implements Initializable {
                 
                 boolean flag =false;
                 
-
                 
                  Set<Gatunek> gg=dodanieGatunkowDoFilmu(a);
                  if(gg.isEmpty()==false){
@@ -348,10 +346,15 @@ public class EdycjaFilmController implements Initializable {
                 em.getTransaction().commit();
 
 		em.close();
-
-                
-                Stage stage = (Stage) CancelButton.getScene().getWindow();
-                stage.close();
+              
+                Parent movie_parent = FXMLLoader.load(getClass().getResource("EDIT.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);             
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                app_stage.setTitle("Edytuj Film");
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();
                 
                 
                 }

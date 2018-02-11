@@ -120,7 +120,7 @@ public class Gatunek implements Serializable {
 
     @Override
     public String toString() {
-        return "Gatunek{" + "gatunekId=" + gatunekId + ", nazwa=" + nazwa + '}';
+        return nazwa;
     }
 
     

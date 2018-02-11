@@ -137,18 +137,20 @@ public class EDITController implements Initializable {
          Set<Rezyser> SetRezyserzy;
          SetRezyserzy = a.getRezyserzy();
         
+            
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EdycjaFilm.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-             
+            Parent movie_parent = (Parent) fxmlLoader.load();
+            Scene movie_scene = new Scene(movie_parent); 
+            
             EdycjaFilmController display = fxmlLoader.getController();
             display.setText(tytul, rok, money, kraj, SetGatunki, SetAktorzy, SetRezyserzy);
             
- 
-            Stage stage = new Stage();
-            stage.setTitle("Edycja");
-            stage.setScene(new Scene(root1));  
-            stage.show();  
-        
+            Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show(); 
+                            
         
        }   
 

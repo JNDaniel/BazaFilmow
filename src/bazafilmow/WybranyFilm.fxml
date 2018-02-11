@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bazafilmow.WybranyFilmController">
+   <children>
+      <Label fx:id="Tytul" alignment="CENTER" layoutX="205.0" layoutY="20.0" prefHeight="50.0" prefWidth="300.0" text="Label">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ListView fx:id="Akt" layoutX="20.0" layoutY="270.0" minWidth="150.0" prefHeight="200.0" prefWidth="322.0" />
+      <ListView fx:id="Rez" layoutX="363.0" layoutY="270.0" prefHeight="200.0" prefWidth="322.0" />
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="15.0" layoutY="70.0" prefHeight="143.0" prefWidth="672.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="385.0" text="Rok Produkcji" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="386.0" text="BoxOffice" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="371.0" text="Kraj" GridPane.rowIndex="2" />
+            <Label fx:id="Rok" alignment="CENTER" prefHeight="28.0" prefWidth="354.0" text="Label" GridPane.columnIndex="1" />
+            <Label fx:id="Box" alignment="CENTER" prefHeight="28.0" prefWidth="339.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="Kraj" alignment="CENTER" prefHeight="28.0" prefWidth="346.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="361.0" text="Gatunki" GridPane.rowIndex="3" />
+            <Label fx:id="Gatunki" alignment="CENTER" prefHeight="28.0" prefWidth="335.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Label layoutX="148.0" layoutY="238.0" text="Aktorzy" />
+      <Label layoutX="479.0" layoutY="238.0" text="Reżyserzy" />
+   </children>
+</AnchorPane>

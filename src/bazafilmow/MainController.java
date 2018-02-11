@@ -118,4 +118,18 @@ public class MainController implements Initializable {
                 
                 
             }
+            
+            @FXML
+            private void PrzegladanieHandler(ActionEvent event) throws IOException{
+                
+                System.out.println("You clicked me!");
+	        Parent movie_parent = FXMLLoader.load(getClass().getResource("PrzegladanieFilmow.fxml"));
+	        Scene movie_scene = new Scene(movie_parent);             
+	        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                app_stage.setTitle("Edytuj Film");
+	          
+	                app_stage.hide(); //optional
+	                app_stage.setScene(movie_scene);
+	                app_stage.show();  
+            }
 }
