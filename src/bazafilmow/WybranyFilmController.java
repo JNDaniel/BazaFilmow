@@ -7,6 +7,7 @@ package bazafilmow;
 
 import bazafilmow.model.Aktor;
 import bazafilmow.model.Gatunek;
+import bazafilmow.model.Kraj;
 import bazafilmow.model.Rezyser;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,11 +55,13 @@ public class WybranyFilmController implements Initializable {
         // TODO
     }  
     
-    public void setText(String Tytul,String RokProd,String Money,String Krajj,String Gatunkii,Set<Aktor> Aktorzy, Set<Rezyser> Rezyserzy){
+    public void setText(String Tytul,String RokProd,String Money,String Kraje,String Gatunkii,Set<Aktor> Aktorzy, Set<Rezyser> Rezyserzy){
         this.Tytul.setText(Tytul);
         this.Rok.setText(RokProd);
         this.Box.setText(Money);
-        this.Kraj.setText(Krajj);
+        //this.Kraj.setText(Krajj);
+        this.Kraj.setText(Kraje);
+        
         this.Gatunki.setText(Gatunkii);
         Akt.getItems().addAll(Aktorzy);
         Rez.getItems().addAll(Rezyserzy);
@@ -69,7 +72,7 @@ public class WybranyFilmController implements Initializable {
         if(RokProd == null){
             this.Rok.setText("NULL");
         }    
-        if(Krajj == null){
+        if(Kraje == null){
             this.Kraj.setText("NULL");
         }
               
