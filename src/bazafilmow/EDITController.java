@@ -8,7 +8,6 @@ package bazafilmow;
 import bazafilmow.model.Aktor;
 import bazafilmow.model.Film;
 import bazafilmow.model.Gatunek;
-import bazafilmow.model.Kraj;
 import bazafilmow.model.Rezyser;
 import java.io.IOException;
 import java.net.URL;
@@ -116,12 +115,11 @@ public class EDITController implements Initializable {
         short RokProd = a.getRokProd();
         rok = String.valueOf(RokProd);
         }  
-        if(a.getBoxOffice() != null){
-            
+        if(a.getBoxOffice() != null)
+        {
         float BoxOffice = a.getBoxOffice();
         money = String.valueOf(BoxOffice);
         }
-
            
         if(a.getKraje().isEmpty()){            
         kraj = null;
@@ -130,13 +128,7 @@ public class EDITController implements Initializable {
         {
             System.out.println("Kraje edytowanego filmu "+a.getKraje()); 
             kraj="";
-            for(Kraj k : a.getKraje()) //wysietlanie w stringu kilku krajow 
-            {
-                kraj += k.toString()+", ";
-            }
-
-//FIXME: Robocza wersja, krajow moze byc duzo nizej metoda addKraj wybranie z listy kraju tylko dodaje do istniejacych
-            
+            kraj = a.getKraje().toArray()[0].toString();
         }
        
          Set<Gatunek> SetGatunki;

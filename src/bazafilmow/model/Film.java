@@ -201,6 +201,7 @@ public class Film implements Serializable {
     
     public void addKraj(Kraj k)
     {
+        this.kraje.clear();
         this.kraje.add(k);
         k.getFilmy().add(this);
     }
