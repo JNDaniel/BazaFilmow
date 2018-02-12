@@ -164,22 +164,46 @@ public class EDITController implements Initializable {
             
 
         EntityManager em = Utils.getEntityManager();
+        int i= lista.getSelectionModel().getSelectedIndex();
+        if(i!=-1){
+               
+        a = DoEdycji.get(i);
+        //Film value = (Film) lista.getSelectionModel().getSelectedItem();
         
-        Film value = (Film) lista.getSelectionModel().getSelectedItem();
-        if(value != null){
         em.getTransaction().begin();
         
-        if(!em.contains(value)){
-            value = em.merge(value);
+        if(!em.contains(a)){
+            a = em.merge(a);
         }
         
-        em.remove(value);
+        em.remove(a);
 
         em.getTransaction().commit();
         }
+
+
+        ObservableList<String> list = FXCollections.observableArrayList();
+                    
+        Query queryFilmy = em.createNamedQuery("Film.findAllAlpha");
+        List<Film> filmy = queryFilmy.getResultList();     
+       // list.addAll(filmy);
+        //lista.setItems(list);
+
+        
+        String g;
+        
+        for(int j=0;j<filmy.size();j++){
+                 
+        g = filmy.get(j).getTytul();
+        list.add(g);
+         
+         }
+        lista.setItems(list);
+        DoEdycji=filmy;
+        
         em.close();
         
-        }
+    }
         
         
     @FXML
