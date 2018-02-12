@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bazafilmow;
 
 
@@ -86,7 +81,8 @@ public class PrzegladanieFilmowController implements Initializable {
 
  
 @FXML
-    private void handleCofnijButton(ActionEvent event) throws IOException{
+    private void handleCofnijButton(ActionEvent event) throws IOException
+    {
             
             Parent movie_parent = FXMLLoader.load(getClass().getResource("RootLayout.fxml"));
 	        Scene movie_scene = new Scene(movie_parent);
@@ -96,7 +92,7 @@ public class PrzegladanieFilmowController implements Initializable {
 	                app_stage.setScene(movie_scene);
 	                app_stage.show();
             
-        }
+    }
 
     @FXML 
     public void handleMouseClick(MouseEvent arg0) throws IOException{
@@ -136,15 +132,20 @@ public class PrzegladanieFilmowController implements Initializable {
         Set<Kraj> SetKraje;
         SetKraje = f.getKraje();
         
-        if(!SetKraje.isEmpty()){
-            kraje = SetKraje.toString();
+        if(!SetKraje.isEmpty())
+        {
+            kraje = SetKraje.toArray()[0].toString();
         }
         
         Set<Gatunek> SetGatunki;
         SetGatunki = f.getGatunki();
         
         if(!SetGatunki.isEmpty()){    
-        elo = SetGatunki.toString();
+        elo = "";
+        for(Gatunek g : f.getGatunki())
+        {
+            elo+=g.getNazwa()+" ";
+        }
         
         }  
         
