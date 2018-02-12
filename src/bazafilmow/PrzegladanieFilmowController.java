@@ -9,6 +9,7 @@ package bazafilmow;
 import bazafilmow.model.Aktor;
 import bazafilmow.model.Film;
 import bazafilmow.model.Gatunek;
+import bazafilmow.model.Kraj;
 import bazafilmow.model.Rezyser;
 import java.io.IOException;
 import java.net.URL;
@@ -113,6 +114,7 @@ public class PrzegladanieFilmowController implements Initializable {
         String money = null;
         String kraj = null;
         String elo = null;
+        String kraje = null; 
         
         if(f.getRokProd() != null){
             
@@ -127,7 +129,15 @@ public class PrzegladanieFilmowController implements Initializable {
         }
                
         if(f.getJezyk() != null){            
-        kraj = f.getJezyk();
+            kraj = f.getJezyk();
+        }
+        
+        
+        Set<Kraj> SetKraje;
+        SetKraje = f.getKraje();
+        
+        if(!SetKraje.isEmpty()){
+            kraje = SetKraje.toString();
         }
         
         Set<Gatunek> SetGatunki;
@@ -150,7 +160,7 @@ public class PrzegladanieFilmowController implements Initializable {
         Parent root1 = (Parent) fxmlLoader.load();
         
         WybranyFilmController display = fxmlLoader.getController();
-        display.setText(tytul,rok,money,kraj,elo,SetAktorzy,SetRezyserzy);
+        display.setText(tytul,rok,money,kraje,elo,SetAktorzy,SetRezyserzy);
         
         Stage stage = new Stage();
         stage.setTitle("Przeglądaj");
