@@ -67,8 +67,7 @@ public class Film implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "kraj_id")
     )
     private Set<Kraj> kraje = new HashSet<>();
-    @ManyToMany(cascade = { 
-        CascadeType.PERSIST, 
+    @ManyToMany(cascade = {  
         CascadeType.MERGE
     })
     @JoinTable(name = "film_rezyser",
@@ -78,7 +77,6 @@ public class Film implements Serializable {
     Set<Rezyser> rezyserzy = new HashSet<>();
     
     @ManyToMany(cascade = { 
-        CascadeType.PERSIST, 
         CascadeType.MERGE
     })
     @JoinTable(name = "film_aktor",
