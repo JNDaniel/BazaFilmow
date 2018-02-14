@@ -197,7 +197,7 @@ public class NEWController implements Initializable {
                 if(!ViewAktorzy.getItems().contains(WyborAktora.getSelectionModel().getSelectedItem())){                                           
                  
                     ViewAktorzy.getItems().add(WyborAktora.getSelectionModel().getSelectedItem());
-                    
+
                 }
                                      
                    // }
@@ -338,7 +338,7 @@ public class NEWController implements Initializable {
 
                 //f.addAktor((Aktor) WyborAktora.getSelectionModel().getSelectedItem());
 
-                
+                    
                     for(int i=0;i<ViewAktorzy.getItems().size();i++){
                        
                        f.addAktor((Aktor) ViewAktorzy.getItems().get(i));

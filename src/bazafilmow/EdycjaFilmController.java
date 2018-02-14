@@ -322,28 +322,28 @@ public class EdycjaFilmController implements Initializable {
                 
 
                 //f.addAktor((Aktor) WyborAktora.getSelectionModel().getSelectedItem());
-
+                    Set<Aktor> tempAktorSet = new HashSet<>();
+              
                 
                     for(int i=0;i<ViewAktorzy.getItems().size();i++){
-                       
-                       a.addAktor((Aktor) ViewAktorzy.getItems().get(i));
+                       tempAktorSet.add((Aktor) ViewAktorzy.getItems().get(i));
                     }
                // em.persist(a);                         
                 System.out.println(a.getAktorzy());
-                
+                Set<Rezyser> tempRezyserSet = new HashSet<>();
                 
                     for(int i=0;i<ViewRezyserzy.getItems().size();i++){
-                       
-                       a.addRezyser((Rezyser) ViewRezyserzy.getItems().get(i));
+                       tempRezyserSet.add((Rezyser) ViewRezyserzy.getItems().get(i));
                     }
-                    
+               
                // em.persist(a);
                 System.out.println(a.getRezyserzy());
                 
                 
                 
                 if(flag == true){
-      
+               a.setAktorzy(tempAktorSet);
+               a.setRezyserzy(tempRezyserSet);   
                 em.getTransaction().commit();
 
 		em.close();
