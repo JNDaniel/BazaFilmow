@@ -51,7 +51,7 @@ public class MainController implements Initializable {
     final MediaPlayer mediaPlayer = new MediaPlayer(media);
     @FXML
     private Button EdytujRezysera;
-    
+    boolean flag = false;
     
     /**
      * Initializes the controller class.
@@ -63,16 +63,18 @@ public class MainController implements Initializable {
     }
         
         @FXML
-        private void handleMusic(ActionEvent event){
-                       
-            boolean flag = true;
-            mediaPlayer.play();
-            
-            if(flag == true){
+        private void handleMusic(ActionEvent event)
+        {
+            if(flag)
+            {
+                flag = !flag;
                 mediaPlayer.pause();                
-                flag = false;  
-            }
-               
+            }    
+            else
+            {
+                flag = !flag;
+                mediaPlayer.play();
+            }  
         }
     
         
