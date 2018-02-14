@@ -121,13 +121,15 @@ private BorderPane RootLayout;
                 em.persist(aktor100);
                 em.persist(aktor1000);
                 em.persist(major);
-                //
                 
                 
                 
                 Aktor aktor2 = new Aktor();
                 aktor2.setImie("AktorImie2");
                 aktor2.setNazwisko("AktorNazwisko2");
+                aktor2.setDataUrodzenia("1996-12-19");
+                aktor2.setNarodowosc("Polak");
+                em.persist(aktor2);
                 
                 Gatunek gatunek1 = new Gatunek();
                 gatunek1.setNazwa("Paranormalny");
@@ -135,22 +137,17 @@ private BorderPane RootLayout;
                 Gatunek gatunek2 = new Gatunek();
                 gatunek2.setNazwa("Przyrodniczy");
                 
-                
-                
-                //f2.deleteKraj(x); //usuwanie tylko relacji a nie usuwa kraju z bazy
-                //f.deleteKraj(x);
-                //em.remove(x);
-                //em.remove(y);
-                
                 Rezyser rez1 = new Rezyser();
                 rez1.setImie("Daniel");
                 rez1.setNazwisko("Janowski");
                 rez1.setNarodowosc("Polska");
+                em.persist(rez1);
                 
                 Rezyser rez2 = new Rezyser();
                 rez2.setImie("Dan");
                 rez2.setNazwisko("Jan");
                 rez2.setNarodowosc("Pol");
+                em.persist(rez2);
                 
                 
                 
@@ -164,13 +161,14 @@ private BorderPane RootLayout;
                 
                 
  
-               //em.persist(aktor2);
-               //em.persist(aktor1);
+               em.persist(aktor2);
+               em.persist(aktor1);
                
                f.addAktor(aktor1);
-               //f.addAktor(aktor2);
-               //f2.addAktor(aktor2);
+               f.addAktor(aktor2);
+               f2.addAktor(aktor2);
                aktor1.addFilm(f2);
+               
                em.getTransaction().commit();
                
                em.getTransaction().begin();
@@ -186,16 +184,6 @@ private BorderPane RootLayout;
                f2.addGatunek(gatunek2);
                 
                 em.refresh(aktor1);
-                aktor1.deleteFilm(f);
-                //f2.deleteAktor(aktor1);
-
-               
-                
-                //System.out.println(f.getTytul()+" "+f.getAktorzy());
-                //System.out.println(f2.getTytul()+" "+f2.getAktorzy());
-                
-
-                //System.out.println(aktor1.getImie()+" "+aktor1.getFilmy());
                 
                 
 
