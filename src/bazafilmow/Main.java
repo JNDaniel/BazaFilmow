@@ -74,16 +74,22 @@ private BorderPane RootLayout;
                 Film f = new Film();
                 Film f2 = new Film();
                 Film f3 = new Film();
+                Film f4 = new Film();
                 
                 f.setTytul("Szybcy");
                 f2.setTytul("Szybsi");
                 f3.setTytul("Najszybsi");
+                f4.setTytul("Szybcy i Wściekli");
                 
                 short rok = 2008;
                 short rok2 = 1995;
+                short rok4 = 2001;
                 
                 f.setRokProd(rok);
                 f2.setRokProd(rok2);
+                f4.setRokProd(rok4);
+                
+                
                 
                 
                 
@@ -117,6 +123,20 @@ private BorderPane RootLayout;
                 major.setImie("Major");
                 major.setNazwisko("Kononowicz");
                 
+                Aktor paul = new Aktor();
+                paul.setImie("Paul");
+                paul.setNazwisko("Walker");
+                paul.setNarodowosc("USA");
+                paul.setDataUrodzenia("12 września 1973");
+                
+                Aktor vin = new Aktor();
+                vin.setImie("Vin");
+                vin.setNazwisko("Diesel");
+                vin.setNarodowosc("USA");
+                vin.setDataUrodzenia("18 lipca 1967");
+                
+                em.persist(paul);
+                em.persist(vin);
                 em.persist(aktor10);
                 em.persist(aktor100);
                 em.persist(aktor1000);
@@ -149,8 +169,13 @@ private BorderPane RootLayout;
                 rez2.setNarodowosc("Pol");
                 em.persist(rez2);
                 
+                Rezyser rob = new Rezyser();
+                rob.setImie("Rob");
+                rob.setNazwisko("Cohen");
+                rob.setNarodowosc("USA");
+                rob.setDataUrodzenia("12 marca 1949");
                 
-                
+                em.persist(rob);
                 em.persist(f);
                 em.persist(f2);
                 
@@ -158,9 +183,11 @@ private BorderPane RootLayout;
                 f.addRezyser(rez2);
                 f2.addRezyser(rez2);
                 
+                f4.addRezyser(rob);
+                f4.addAktor(vin);
+                f4.addAktor(paul);
                 
-                
- 
+               em.persist(f4);
                em.persist(aktor2);
                em.persist(aktor1);
                
