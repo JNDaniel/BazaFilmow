@@ -68,7 +68,6 @@ public class Film implements Serializable {
     )
     private Set<Kraj> kraje = new HashSet<>();
     @ManyToMany(cascade = { 
-        CascadeType.PERSIST, 
         CascadeType.MERGE
     })
     @JoinTable(name = "film_rezyser",
@@ -78,7 +77,6 @@ public class Film implements Serializable {
     Set<Rezyser> rezyserzy = new HashSet<>();
     
     @ManyToMany(cascade = { 
-        CascadeType.PERSIST, 
         CascadeType.MERGE
     })
     @JoinTable(name = "film_aktor",
@@ -194,7 +192,7 @@ public class Film implements Serializable {
     public Set<Kraj> getKraje() {
         return kraje;
     }
-
+    @Deprecated
     public void setKraje(Set<Kraj> kraje) {
         this.kraje = kraje;
     }
@@ -215,8 +213,17 @@ public class Film implements Serializable {
         return rezyserzy;
     }
     
-    public void setRezyserzy(Set<Rezyser> rezyserzy) {
-        this.rezyserzy = rezyserzy;
+    public void setRezyserzy(Set<Rezyser> rezyserzy) 
+    {
+        for(Rezyser r : this.rezyserzy)
+        {
+            r.getFilmy().remove(this);
+        }
+        this.rezyserzy.clear();
+        for(Rezyser r : rezyserzy)
+        {
+            this.addRezyser(r);
+        }
     }
     public void addRezyser(Rezyser r)
     {
@@ -234,7 +241,15 @@ public class Film implements Serializable {
     }
 
     public void setAktorzy(Set<Aktor> aktorzy) {
-        this.aktorzy = aktorzy;
+        for(Aktor a : this.aktorzy)
+        {
+            a.getFilmy().remove(this);
+        }
+        this.aktorzy.clear();
+        for(Aktor a : aktorzy)
+        {
+            this.addAktor(a);
+        }
     }
     
     public void addAktor(Aktor a)
@@ -253,6 +268,11 @@ public class Film implements Serializable {
     }
 
     public void setGatunki(Set<Gatunek> gatunki) {
+        for(Gatunek g : this.gatunki)
+        {
+            g.getFilmy().remove(this);
+        }
+        this.gatunki.clear();
         for(Gatunek g : gatunki)
         {
             this.addGatunek(g);
