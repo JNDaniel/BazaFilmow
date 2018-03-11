@@ -149,22 +149,11 @@ public class NEWController implements Initializable {
         ObservableList<String> list2 = FXCollections.observableArrayList();
         ObservableList<String> list3 = FXCollections.observableArrayList();
         
-        
-	//String[] locales = Locale.getISOCountries();		
-		 
-		//for (String countryCode : locales) 
-                //{                   
-                //    Locale obj = new Locale("", countryCode);
-                //    list.add(obj.getDisplayCountry());
-                //}
-			
-                //WyborKraju.setItems(list);
-		//WyborKraju.setItems(loadKraje());
                 
                 EntityManager em = Utils.getEntityManager();
                 
                 
-                Query queryKraj = em.createNamedQuery("Kraj.findAll");
+                Query queryKraj = em.createNamedQuery("Kraj.findAllAlpha");
                 Collection kraje = queryKraj.getResultList();     
                 list.addAll(kraje);
                 WyborKraju.setItems(list);
@@ -178,6 +167,8 @@ public class NEWController implements Initializable {
                 Collection rezyserzy = queryRezyserzy.getResultList();
                 list3.addAll(rezyserzy);
                 WyborRe.setItems(list3);
+                
+                NazwaKraju.setText("");
     }    
     
             @FXML
@@ -186,18 +177,20 @@ public class NEWController implements Initializable {
                   //  @Override
                    // public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                         
-                ObservableList<String> list = FXCollections.observableArrayList();
-                EntityManager em = Utils.getEntityManager();
-                    
-                Query queryAktorzy = em.createNamedQuery("Aktor.findAll");
-                Collection aktorzy = queryAktorzy.getResultList();     
-                list.addAll(aktorzy);
-                WyborAktora.setItems(list);
+//                ObservableList<String> list = FXCollections.observableArrayList();
+//                EntityManager em = Utils.getEntityManager();
+//                    
+//                Query queryAktorzy = em.createNamedQuery("Aktor.findAll");
+//                Collection aktorzy = queryAktorzy.getResultList();     
+//                list.addAll(aktorzy);
+//                WyborAktora.setItems(list);
                    
-                if(!ViewAktorzy.getItems().contains(WyborAktora.getSelectionModel().getSelectedItem())){                                           
-                 
-                    ViewAktorzy.getItems().add(WyborAktora.getSelectionModel().getSelectedItem());
-
+                if(!ViewAktorzy.getItems().contains(WyborAktora.getSelectionModel().getSelectedItem()))
+                {                                           
+                    if(WyborAktora.getSelectionModel().getSelectedItem()!=null)
+                    {
+                        ViewAktorzy.getItems().add(WyborAktora.getSelectionModel().getSelectedItem());
+                    }
                 }
                                      
                    // }
@@ -215,24 +208,17 @@ public class NEWController implements Initializable {
             }
             
             @FXML
-            private void comboActionRezyser() {
-                //WyborAktora.valueProperty().addListener(new ChangeListener<String>() {
-                  //  @Override
-                   // public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                        
-                 ObservableList<String> list = FXCollections.observableArrayList();
-                 EntityManager em = Utils.getEntityManager();
-                    
-                Query queryRez = em.createNamedQuery("Rezyser.findAll");
-                Collection rezyserzy = queryRez.getResultList();     
-                list.addAll(rezyserzy);
-                WyborRe.setItems(list);
-                
+            private void comboActionRezyser() {           
                 if(!ViewRezyserzy.getItems().contains(WyborRe.getSelectionModel().getSelectedItem())){                                           
                 
-                    ViewRezyserzy.getItems().add(WyborRe.getSelectionModel().getSelectedItem());
+                    if(WyborRe.getSelectionModel().getSelectedItem()!=null)
+                    {
+                        ViewRezyserzy.getItems().add(WyborRe.getSelectionModel().getSelectedItem());
+                    }
+                    
                     
                 }
+                System.out.println(ViewRezyserzy.getItems());
                    // }
                // });
             }
@@ -277,7 +263,7 @@ public class NEWController implements Initializable {
               
                 
                 
-                f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
+              
                 System.out.println("Wybrales kraj: "+WyborKraju.getSelectionModel().getSelectedItem());
                 System.out.println("Kraje nowego filmu "+f.getKraje());
                 
@@ -334,6 +320,15 @@ public class NEWController implements Initializable {
                     flag = true;
                                   
                 }
+                if(!NazwaKraju.getText().trim().isEmpty())
+                {
+                        flag=true;
+                      f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
+                }
+                else
+                {
+                    flag=false;
+                }
                 
 
                 //f.addAktor((Aktor) WyborAktora.getSelectionModel().getSelectedItem());
@@ -384,6 +379,9 @@ public class NEWController implements Initializable {
                 Stage stage = new Stage();
                 stage.setTitle("Nowy Aktor");
                 stage.setScene(new Scene(root1));  
+                stage.setOnHidden((e) -> {
+                    aktorRefresh();
+                });
                 stage.show();
             }
             
@@ -394,7 +392,10 @@ public class NEWController implements Initializable {
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setTitle("Nowy Reżyser");
-                stage.setScene(new Scene(root1));  
+                stage.setScene(new Scene(root1));
+                stage.setOnHidden((e) -> {
+                    rezRefresh();
+                });
                 stage.show();
           
             }
@@ -482,6 +483,24 @@ public class NEWController implements Initializable {
                 }
               return SetG;  
             }
+
+    private void rezRefresh() {
+                ObservableList<Rezyser> list2 = FXCollections.observableArrayList();
+                EntityManager em = Utils.getEntityManager();
+                Query queryRez = em.createNamedQuery("Rezyser.findAllAlpha");
+                Collection rez = queryRez.getResultList();     
+                list2.addAll(rez);
+                WyborRe.setItems(list2);
+    }
+        private void aktorRefresh() {
+                ObservableList<Rezyser> list2 = FXCollections.observableArrayList();
+                EntityManager em = Utils.getEntityManager();
+                Query queryAktor = em.createNamedQuery("Aktor.findAllAlpha");
+                Collection aktorzy = queryAktor.getResultList();     
+                list2.addAll(aktorzy);
+                WyborAktora.setItems(list2);
+    }
+    
 
             
                 
