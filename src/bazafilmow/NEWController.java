@@ -338,6 +338,15 @@ public class NEWController implements Initializable {
                 {
                     flag=false;
                 }
+                if(!NazwaKraju.getText().trim().isEmpty())
+                {
+                        flag=true;
+                      f.addKraj((Kraj) WyborKraju.getSelectionModel().getSelectedItem());
+                }
+                else
+                {
+                    flag=false;
+                }
                 
 
                 //f.addAktor((Aktor) WyborAktora.getSelectionModel().getSelectedItem());
@@ -505,7 +514,7 @@ public class NEWController implements Initializable {
                 ObservableList<Rezyser> list2 = FXCollections.observableArrayList();
                 EntityManager em = Utils.getEntityManager();
                 Query queryAktor = em.createNamedQuery("Aktor.findAllAlpha");
-                Collection aktorzy = queryAktor.getResultList();   
+                Collection aktorzy = queryAktor.getResultList();     
                 list2.addAll(aktorzy);
                 WyborAktora.setItems(list2);
     }
